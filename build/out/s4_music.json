@@ -1,0 +1,324 @@
+{
+  "meta": {
+    "source": "MusicBrainz web service - release counts by year and format",
+    "years": "1990-2024",
+    "caveat": "Community catalogue, not a market census; shares are the defensible measure."
+  },
+  "series": [
+    {
+      "year": 1990,
+      "CD": 25929,
+      "Vinyl": 470,
+      "Cassette": 2289,
+      "Digital Media": 566,
+      "physical": 28688,
+      "vinyl_share": 1.6
+    },
+    {
+      "year": 1991,
+      "CD": 29386,
+      "Vinyl": 390,
+      "Cassette": 2336,
+      "Digital Media": 639,
+      "physical": 32112,
+      "vinyl_share": 1.2
+    },
+    {
+      "year": 1992,
+      "CD": 33071,
+      "Vinyl": 330,
+      "Cassette": 2457,
+      "Digital Media": 726,
+      "physical": 35858,
+      "vinyl_share": 0.9
+    },
+    {
+      "year": 1993,
+      "CD": 37854,
+      "Vinyl": 296,
+      "Cassette": 2481,
+      "Digital Media": 836,
+      "physical": 40631,
+      "vinyl_share": 0.7
+    },
+    {
+      "year": 1994,
+      "CD": 43193,
+      "Vinyl": 247,
+      "Cassette": 2433,
+      "Digital Media": 1056,
+      "physical": 45873,
+      "vinyl_share": 0.5
+    },
+    {
+      "year": 1995,
+      "CD": 47198,
+      "Vinyl": 223,
+      "Cassette": 2479,
+      "Digital Media": 1357,
+      "physical": 49900,
+      "vinyl_share": 0.4
+    },
+    {
+      "year": 1996,
+      "CD": 49598,
+      "Vinyl": 258,
+      "Cassette": 2159,
+      "Digital Media": 1419,
+      "physical": 52015,
+      "vinyl_share": 0.5
+    },
+    {
+      "year": 1997,
+      "CD": 51280,
+      "Vinyl": 221,
+      "Cassette": 1837,
+      "Digital Media": 1583,
+      "physical": 53338,
+      "vinyl_share": 0.4
+    },
+    {
+      "year": 1998,
+      "CD": 52267,
+      "Vinyl": 241,
+      "Cassette": 1743,
+      "Digital Media": 1826,
+      "physical": 54251,
+      "vinyl_share": 0.4
+    },
+    {
+      "year": 1999,
+      "CD": 56000,
+      "Vinyl": 280,
+      "Cassette": 1576,
+      "Digital Media": 2462,
+      "physical": 57856,
+      "vinyl_share": 0.5
+    },
+    {
+      "year": 2000,
+      "CD": 56534,
+      "Vinyl": 249,
+      "Cassette": 1224,
+      "Digital Media": 3491,
+      "physical": 58007,
+      "vinyl_share": 0.4
+    },
+    {
+      "year": 2001,
+      "CD": 57941,
+      "Vinyl": 281,
+      "Cassette": 1105,
+      "Digital Media": 3970,
+      "physical": 59327,
+      "vinyl_share": 0.5
+    },
+    {
+      "year": 2002,
+      "CD": 58587,
+      "Vinyl": 276,
+      "Cassette": 766,
+      "Digital Media": 4945,
+      "physical": 59629,
+      "vinyl_share": 0.5
+    },
+    {
+      "year": 2003,
+      "CD": 60411,
+      "Vinyl": 292,
+      "Cassette": 610,
+      "Digital Media": 6502,
+      "physical": 61313,
+      "vinyl_share": 0.5
+    },
+    {
+      "year": 2004,
+      "CD": 61770,
+      "Vinyl": 370,
+      "Cassette": 485,
+      "Digital Media": 8634,
+      "physical": 62625,
+      "vinyl_share": 0.6
+    },
+    {
+      "year": 2005,
+      "CD": 65128,
+      "Vinyl": 445,
+      "Cassette": 421,
+      "Digital Media": 11915,
+      "physical": 65994,
+      "vinyl_share": 0.7
+    },
+    {
+      "year": 2006,
+      "CD": 67946,
+      "Vinyl": 541,
+      "Cassette": 427,
+      "Digital Media": 16408,
+      "physical": 68914,
+      "vinyl_share": 0.8
+    },
+    {
+      "year": 2007,
+      "CD": 68975,
+      "Vinyl": 702,
+      "Cassette": 466,
+      "Digital Media": 22623,
+      "physical": 70143,
+      "vinyl_share": 1.0
+    },
+    {
+      "year": 2008,
+      "CD": 66880,
+      "Vinyl": 774,
+      "Cassette": 570,
+      "Digital Media": 29834,
+      "physical": 68224,
+      "vinyl_share": 1.1
+    },
+    {
+      "year": 2009,
+      "CD": 61430,
+      "Vinyl": 654,
+      "Cassette": 763,
+      "Digital Media": 39607,
+      "physical": 62847,
+      "vinyl_share": 1.0
+    },
+    {
+      "year": 2010,
+      "CD": 57137,
+      "Vinyl": 648,
+      "Cassette": 1008,
+      "Digital Media": 48802,
+      "physical": 58793,
+      "vinyl_share": 1.1
+    },
+    {
+      "year": 2011,
+      "CD": 52468,
+      "Vinyl": 416,
+      "Cassette": 1017,
+      "Digital Media": 59347,
+      "physical": 53901,
+      "vinyl_share": 0.8
+    },
+    {
+      "year": 2012,
+      "CD": 51343,
+      "Vinyl": 323,
+      "Cassette": 1123,
+      "Digital Media": 71780,
+      "physical": 52789,
+      "vinyl_share": 0.6
+    },
+    {
+      "year": 2013,
+      "CD": 47655,
+      "Vinyl": 284,
+      "Cassette": 1314,
+      "Digital Media": 81008,
+      "physical": 49253,
+      "vinyl_share": 0.6
+    },
+    {
+      "year": 2014,
+      "CD": 43063,
+      "Vinyl": 344,
+      "Cassette": 1438,
+      "Digital Media": 89212,
+      "physical": 44845,
+      "vinyl_share": 0.8
+    },
+    {
+      "year": 2015,
+      "CD": 40062,
+      "Vinyl": 423,
+      "Cassette": 1532,
+      "Digital Media": 98875,
+      "physical": 42017,
+      "vinyl_share": 1.0
+    },
+    {
+      "year": 2016,
+      "CD": 37511,
+      "Vinyl": 501,
+      "Cassette": 1656,
+      "Digital Media": 111852,
+      "physical": 39668,
+      "vinyl_share": 1.3
+    },
+    {
+      "year": 2017,
+      "CD": 35065,
+      "Vinyl": 485,
+      "Cassette": 1652,
+      "Digital Media": 124727,
+      "physical": 37202,
+      "vinyl_share": 1.3
+    },
+    {
+      "year": 2018,
+      "CD": 32089,
+      "Vinyl": 455,
+      "Cassette": 1618,
+      "Digital Media": 142719,
+      "physical": 34162,
+      "vinyl_share": 1.3
+    },
+    {
+      "year": 2019,
+      "CD": 27984,
+      "Vinyl": 451,
+      "Cassette": 1454,
+      "Digital Media": 163259,
+      "physical": 29889,
+      "vinyl_share": 1.5
+    },
+    {
+      "year": 2020,
+      "CD": 21877,
+      "Vinyl": 376,
+      "Cassette": 1408,
+      "Digital Media": 203992,
+      "physical": 23661,
+      "vinyl_share": 1.6
+    },
+    {
+      "year": 2021,
+      "CD": 20462,
+      "Vinyl": 369,
+      "Cassette": 1236,
+      "Digital Media": 203378,
+      "physical": 22067,
+      "vinyl_share": 1.7
+    },
+    {
+      "year": 2022,
+      "CD": 19028,
+      "Vinyl": 409,
+      "Cassette": 966,
+      "Digital Media": 202343,
+      "physical": 20403,
+      "vinyl_share": 2.0
+    },
+    {
+      "year": 2023,
+      "CD": 17856,
+      "Vinyl": 364,
+      "Cassette": 887,
+      "Digital Media": 212943,
+      "physical": 19107,
+      "vinyl_share": 1.9
+    },
+    {
+      "year": 2024,
+      "CD": 15735,
+      "Vinyl": 378,
+      "Cassette": 755,
+      "Digital Media": 213579,
+      "physical": 16868,
+      "vinyl_share": 2.2
+    }
+  ]
+}
