@@ -1,0 +1,1069 @@
+<title>Public Data Briefs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+/* ---------------------------------------------------------------
+   Public Data Briefs - a research & data work sample.
+   Three briefs, each: public source -> stated method -> one answer.
+   Tokens first; every colour below is derived from them.
+   --------------------------------------------------------------- */
+:root{
+  color-scheme: light;
+  --bg:#f2f4f1;
+  --surface:#fbfcfa;
+  --ink:#0f1713;
+  --ink-2:#4a5650;
+  --ink-3:#78847d;
+  --rule:#dde3dc;
+  --rule-strong:#c6cfc7;
+  --accent:#0f6b4f;
+  --accent-soft:#e2efe8;
+  --accent-ink:#0b5440;
+
+  --s1:#2a78d6;
+  --s2:#eb6834;
+  --s3:#1baf7a;
+  --pos:#2a78d6;
+  --neg:#e34948;
+  --mute-mark:#8d978f;
+  --grid:#e4eae3;
+  --axis:#c2ccc4;
+
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0c100e;
+    --surface:#131815;
+    --ink:#eef1ed;
+    --ink-2:#b0bab3;
+    --ink-3:#7d887f;
+    --rule:#232a25;
+    --rule-strong:#333c35;
+    --accent:#57c39b;
+    --accent-soft:#152e25;
+    --accent-ink:#7ad3b1;
+
+    --s1:#3987e5;
+    --s2:#d95926;
+    --s3:#199e70;
+    --pos:#3987e5;
+    --neg:#e66767;
+    --mute-mark:#78847d;
+    --grid:#1f2621;
+    --axis:#333c35;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0c100e;
+  --surface:#131815;
+  --ink:#eef1ed;
+  --ink-2:#b0bab3;
+  --ink-3:#7d887f;
+  --rule:#232a25;
+  --rule-strong:#333c35;
+  --accent:#57c39b;
+  --accent-soft:#152e25;
+  --accent-ink:#7ad3b1;
+
+  --s1:#3987e5;
+  --s2:#d95926;
+  --s3:#199e70;
+  --pos:#3987e5;
+  --neg:#e66767;
+  --mute-mark:#78847d;
+  --grid:#1f2621;
+  --axis:#333c35;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:0 90px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.wrap{max-width:1060px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding-block:56px 40px;border-bottom:1px solid var(--rule)}
+.masthead-top{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between;margin-bottom:36px}
+.mark{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:500}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--rule-strong);border-radius:100px;padding:4px 11px}
+h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.3rem, 6vw, 4rem);
+  line-height:1.04;
+  letter-spacing:-.016em;
+  margin:0 0 22px;
+  text-wrap:balance;
+  max-width:16ch;
+}
+.lede{font-size:clamp(1.06rem, 2vw, 1.24rem);line-height:1.55;color:var(--ink-2);max-width:56ch;margin:0}
+.lede strong{color:var(--ink);font-weight:500}
+
+/* ---------- contents strip ---------- */
+.contents{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--rule)}
+.contents a{
+  flex:1 1 200px;
+  min-width:0;
+  padding:18px 0 18px 18px;
+  border-left:1px solid var(--rule);
+  text-decoration:none;
+  color:var(--ink);
+  display:block;
+  transition:background .15s ease;
+}
+.contents a:first-child{padding-left:0;border-left:0}
+.contents a:hover{background:var(--accent-soft)}
+.contents a:hover .c-title{color:var(--accent-ink)}
+.c-num{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-3);display:block;margin-bottom:5px}
+.c-title{font-size:14px;line-height:1.35;font-weight:500;display:block;max-width:26ch;transition:color .15s ease}
+
+/* ---------- brief ---------- */
+.brief{padding-block:64px 0}
+.brief-head{max-width:64ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:500;display:block;margin-bottom:16px}
+h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.62rem, 3.6vw, 2.55rem);
+  line-height:1.12;
+  letter-spacing:-.012em;
+  margin:0 0 18px;
+  text-wrap:balance;
+}
+.dek{font-size:clamp(1rem, 1.7vw, 1.1rem);line-height:1.6;color:var(--ink-2);margin:0;max-width:62ch}
+
+/* ---------- stat row ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-block:36px 8px}
+.stat{background:var(--bg);padding:18px 20px 20px;min-width:0}
+.stat .v{font-family:var(--serif);font-size:clamp(1.8rem, 3.4vw, 2.35rem);line-height:1;font-weight:600;letter-spacing:-.02em;display:block;margin-bottom:9px}
+.stat .l{font-size:12.5px;line-height:1.35;color:var(--ink-2);display:block}
+.stat .s{font-size:11.5px;line-height:1.4;color:var(--ink-3);display:block;margin-top:4px}
+
+/* ---------- charts ---------- */
+figure.chart{margin:38px 0 0;padding:0}
+.chart-head{margin-bottom:14px}
+.chart h3{font-family:var(--sans);font-size:14.5px;font-weight:600;line-height:1.4;margin:0 0 4px;letter-spacing:-.005em}
+.chart-sub{font-size:12.5px;line-height:1.45;color:var(--ink-3);margin:0;max-width:70ch}
+.chart-body{position:relative;width:100%}
+.chart-body svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-table{overflow-x:auto;margin-top:6px}
+
+.tip{
+  position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--rule-strong);
+  border-radius:7px;padding:7px 10px;font-size:12px;line-height:1.45;color:var(--ink);
+  box-shadow:0 6px 22px rgba(10,20,14,.14);z-index:6;white-space:nowrap;max-width:min(260px,80vw);
+}
+.tip .tk{color:var(--ink-3)}
+.tip b{font-weight:600;font-variant-numeric:tabular-nums}
+
+/* svg text roles */
+.tick{fill:var(--ink-3);font-family:var(--sans);font-size:11px;font-variant-numeric:tabular-nums}
+.rowlab{fill:var(--ink-2);font-family:var(--sans);font-size:12px}
+.dlabel{fill:var(--ink);font-family:var(--sans);font-size:11px;font-variant-numeric:tabular-nums;font-weight:500}
+.axlab{fill:var(--ink-3);font-family:var(--sans);font-size:10.5px;letter-spacing:.03em}
+.annot{fill:var(--ink-2);font-family:var(--sans);font-size:11px}
+.annot-b{fill:var(--ink);font-family:var(--sans);font-size:11px;font-weight:600}
+.g-grid{stroke:var(--grid);stroke-width:1}
+.g-axis{stroke:var(--axis);stroke-width:1}
+.g-ref{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:none}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 12px;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);line-height:1.3}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+.sw.line{height:3px;border-radius:2px;width:14px}
+.sw.dot{width:9px;height:9px;border-radius:50%}
+
+/* table toggle + tables */
+.tbl-btn{
+  margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);background:none;border:1px solid var(--rule-strong);border-radius:100px;
+  padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s;
+}
+.tbl-btn:hover{color:var(--accent-ink);border-color:var(--accent)}
+.tbl-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+table.dt{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+table.dt caption{text-align:left;font-size:12px;color:var(--ink-3);padding-bottom:8px}
+table.dt th{text-align:left;font-weight:500;color:var(--ink-3);font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--rule-strong);padding:5px 14px 6px 0;white-space:nowrap}
+table.dt td{padding:5px 14px 5px 0;border-bottom:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+table.dt td:first-child{color:var(--ink)}
+table.dt td.n,table.dt th.n{text-align:right}
+
+/* ---------- notes ---------- */
+.notes{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;margin-block:40px 0;padding-top:30px;border-top:1px solid var(--rule)}
+.notes h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin:0 0 14px}
+.findings ul{list-style:none;margin:0;padding:0;display:grid;gap:15px}
+.findings li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.findings li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--accent)}
+.findings li strong{color:var(--ink);font-weight:600}
+.method p{font-size:12.5px;line-height:1.65;color:var(--ink-3);margin:0}
+.method p+p{margin-top:10px}
+
+/* ---------- services ---------- */
+.services{margin-top:96px;padding-top:48px;border-top:1px solid var(--rule-strong)}
+.services-head{max-width:60ch;margin-bottom:40px}
+.services h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px}
+.svc h3{font-family:var(--serif);font-size:1.16rem;font-weight:600;margin:0 0 9px;letter-spacing:-.005em}
+.svc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0}
+
+/* ---------- footer ---------- */
+footer{margin-top:88px;padding-top:30px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:baseline}
+footer p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+footer .sig{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+
+@media (max-width:720px){
+  .masthead{padding-block:40px 32px}
+  .brief{padding-block:48px 0}
+  .notes{grid-template-columns:1fr;gap:32px}
+  .contents a{flex-basis:100%;border-left:0;border-top:1px solid var(--rule);padding-left:0;padding-block:13px}
+  .contents a:first-child{border-top:0}
+  .services{margin-top:64px}
+  h1{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <span class="mark">Research &amp; data</span>
+      <span class="tag">Work sample</span>
+    </div>
+    <h1>Three briefs, one method.</h1>
+    <p class="lede">Every figure here comes from a public source, is computed in code you can read, and ends in <strong>one sentence a non-specialist can act on</strong>. That is the service.</p>
+  </header>
+
+  <nav class="contents" aria-label="Briefs">
+    <a href="#energy">
+      <span class="c-num">01 — Energy systems</span>
+      <span class="c-title">The 50% club keeps swapping members</span>
+    </a>
+    <a href="#prices">
+      <span class="c-num">02 — Prices</span>
+      <span class="c-title">Groceries kept up with wages. Restaurants didn't.</span>
+    </a>
+    <a href="#solar">
+      <span class="c-num">03 — Technology cost</span>
+      <span class="c-title">Solar's price curve held for 25 years</span>
+    </a>
+  </nav>
+
+  <!-- ============ 01 ENERGY ============ -->
+  <section class="brief" id="energy">
+    <div class="brief-head">
+      <span class="eyebrow">01 — Energy systems</span>
+      <h2>The 50% club keeps swapping members</h2>
+      <p class="dek">Twenty-six national grids changed sides on majority-renewable electricity between 2000 and 2025. Sixteen joined. Ten left. The two groups barely resemble each other.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">26</span>
+        <span class="l">grids changed status</span>
+        <span class="s">16 joined, 10 left, across 156 countries</span>
+      </div>
+      <div class="stat">
+        <span class="v">0</span>
+        <span class="l">wind or solar on the leavers</span>
+        <span class="s">all ten were hydro-only in 2000</span>
+      </div>
+      <div class="stat">
+        <span class="v">5 of 7</span>
+        <span class="l">entrants since 2020</span>
+        <span class="s">arrived with wind or solar already built</span>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Every grid that changed side, 2000 against its latest year</h3>
+        <p class="chart-sub">Share of electricity generated from renewables. Open dot marks 2000; filled dot marks 2024 or 2025, whichever the country reports.</p>
+      </div>
+      <ul class="legend" id="c1-legend"></ul>
+      <div class="chart-body" id="c1"></div>
+      <div class="chart-table" id="c1-table" hidden></div>
+      <button class="tbl-btn" data-target="c1" aria-expanded="false">Table</button>
+    </figure>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>What tipped each new member over the line</h3>
+        <p class="chart-sub">Entrants grouped by the decade they crossed 50%, split by the renewable source already generating that year.</p>
+      </div>
+      <ul class="legend" id="c2-legend"></ul>
+      <div class="chart-body" id="c2"></div>
+      <div class="chart-table" id="c2-table" hidden></div>
+      <button class="tbl-btn" data-target="c2" aria-expanded="false">Table</button>
+    </figure>
+
+    <div class="notes">
+      <div class="findings">
+        <h3>What the data shows</h3>
+        <ul>
+          <li><strong>The net number barely moved.</strong> 51 grids were majority-renewable in 2000, 57 by 2025 — a gain of six that hides twenty-six changes of side.</li>
+          <li><strong>The leavers were hydro-only.</strong> Not one of the ten had a megawatt of wind or solar in 2000. Hydro output moves with rainfall and dam availability; installed wind and solar do not.</li>
+          <li><strong>The joiners changed kind.</strong> None of the three grids that joined in the 2000s arrived on wind and solar. Five of the seven that joined since 2020 did.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <h3>Method &amp; sources</h3>
+        <p>Ember electricity data via Our World in Data; World Bank populations, used only to drop territories under one million people. Sample: 156 countries with a usable annual series from 2000.</p>
+        <p>“Majority renewable” means renewables supplied at least 50% of electricity generation in a given year. Classification of what tipped a country over uses its wind and solar share in the crossing year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 PRICES ============ -->
+  <section class="brief" id="prices">
+    <div class="brief-head">
+      <span class="eyebrow">02 — Prices</span>
+      <h2>Groceries kept up with wages. Restaurants didn't.</h2>
+      <p class="dek">Food at home is up 31.9% since January 2020. Average hourly earnings are up 33.0%. Measured against pay, the grocery basket is roughly where it started. The gap opened at the restaurant.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">+31.9%</span>
+        <span class="l">food at home</span>
+        <span class="s">January 2020 to September 2026</span>
+      </div>
+      <div class="stat">
+        <span class="v">+33.0%</span>
+        <span class="l">average hourly earnings</span>
+        <span class="s">same window</span>
+      </div>
+      <div class="stat">
+        <span class="v">+4.9 pts</span>
+        <span class="l">food away from home, vs wages</span>
+        <span class="s">the only category meaningfully ahead of pay</span>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Three paths since January 2020, indexed to 100</h3>
+        <p class="chart-sub">All three on one scale, so the crossing points are real rather than an artefact of separate axes.</p>
+      </div>
+      <ul class="legend" id="c3-legend"></ul>
+      <div class="chart-body" id="c3"></div>
+      <div class="chart-table" id="c3-table" hidden></div>
+      <button class="tbl-btn" data-target="c3" aria-expanded="false">Table</button>
+    </figure>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Cumulative price change by grocery category</h3>
+        <p class="chart-sub">January 2020 to September 2026. The vertical rule marks growth in average hourly earnings over the same period.</p>
+      </div>
+      <div class="chart-body" id="c4"></div>
+      <div class="chart-table" id="c4-table" hidden></div>
+      <button class="tbl-btn" data-target="c4" aria-expanded="false">Table</button>
+    </figure>
+
+    <div class="notes">
+      <div class="findings">
+        <h3>What the data shows</h3>
+        <ul>
+          <li><strong>The spread inside one basket is wider than the headline.</strong> Fruit and vegetables rose 40.1%; “other food at home” rose 19.0%. That is a 21-point gap between aisles.</li>
+          <li><strong>Nothing has come back down.</strong> Meat, poultry, fish and eggs sit 1.0% below its peak. Every other category is at its highest level since 2020.</li>
+          <li><strong>Eating out breaks the pattern.</strong> Food away from home is up 37.9%, nearly five points ahead of pay, while groceries finished just behind it.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <h3>Method &amp; sources</h3>
+        <p>BLS Consumer Price Index (CPI-U, seasonally adjusted) and CES average hourly earnings, both via FRED. January 2020 to September 2026, the latest month available.</p>
+        <p>Wages are an economy-wide average, not a household measure. Regional prices, basket composition and median income all differ from these national series, and a household that buys more fresh produce than the average basket has felt a different number.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 SOLAR ============ -->
+  <section class="brief" id="solar">
+    <div class="brief-head">
+      <span class="eyebrow">03 — Technology cost</span>
+      <h2>Solar's price curve held for 25 years, with one four-year detour</h2>
+      <p class="dek">Each doubling of installed solar capacity has come with a 27.7% fall in module price. One slope and one intercept explain 96% of the variation. The exception is 2008–11, when a polysilicon shortage pushed prices as much as 72% above the curve.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">27.7%</span>
+        <span class="l">price fall per doubling</span>
+        <span class="s">fitted on 25 annual observations, 2000–2024</span>
+      </div>
+      <div class="stat">
+        <span class="v">0.96</span>
+        <span class="l">R² of the fit</span>
+        <span class="s">one slope, one intercept, no other inputs</span>
+      </div>
+      <div class="stat">
+        <span class="v">96%</span>
+        <span class="l">fall in module price</span>
+        <span class="s">$6.50/W in 2000 to $0.27/W in 2024</span>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Module price against cumulative installed capacity</h3>
+        <p class="chart-sub">Both axes logarithmic, so a straight line means a constant percentage fall per doubling. The line is an ordinary least-squares fit.</p>
+      </div>
+      <div class="chart-body" id="c5"></div>
+      <div class="chart-table" id="c5-table" hidden></div>
+      <button class="tbl-btn" data-target="c5" aria-expanded="false">Table</button>
+    </figure>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Levelised cost of electricity by technology, 2010–2025</h3>
+        <p class="chart-sub">Solar in colour; the other technologies in grey for context. Lower is cheaper.</p>
+      </div>
+      <ul class="legend" id="c6-legend"></ul>
+      <div class="chart-body" id="c6"></div>
+      <div class="chart-table" id="c6-table" hidden></div>
+      <button class="tbl-btn" data-target="c6" aria-expanded="false">Table</button>
+    </figure>
+
+    <div class="notes">
+      <div class="findings">
+        <h3>What the data shows</h3>
+        <ul>
+          <li><strong>The curve is a planning tool, not a law.</strong> Prices in 2008–11 sat 45–72% above the fitted line, then reverted within three years.</li>
+          <li><strong>Solar is the outlier among technologies.</strong> Its levelised cost fell 89% between 2010 and 2025. Onshore wind fell 71%. Hydropower rose 41% over the same period.</li>
+          <li><strong>The rate is a forecast you can use.</strong> At 27.7% per doubling, another doubling of installed capacity implies roughly a quarter off the module price.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <h3>Method &amp; sources</h3>
+        <p>Solar module cost, installed capacity and levelised cost of energy from IRENA and Lazard via Our World in Data. The experience curve is fitted by ordinary least squares on log price against log cumulative installed capacity.</p>
+        <p>Module price is one component of system cost; installation, land and financing are excluded and have fallen more slowly. The 2008–11 residual is a known polysilicon supply shock, not a fitting error.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services">
+    <div class="services-head">
+      <span class="eyebrow">How I work</span>
+      <h2>Source, analyse, explain</h2>
+      <p class="dek">The three briefs above are one method applied three times. It is the same method I would apply to your question.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <h3>Source</h3>
+        <p>Find the dataset that can actually answer the question, then check it: coverage, revisions, units, and what it leaves out. Most wrong answers start with the wrong table.</p>
+      </div>
+      <div class="svc">
+        <h3>Analyse</h3>
+        <p>Cohort splits, decompositions, real-terms adjustments, log-log fits. The method is stated plainly next to the result, and the assumption that matters is named.</p>
+      </div>
+      <div class="svc">
+        <h3>Explain</h3>
+        <p>One sentence, one chart, and the caveat that changes the reading. Delivered with the code, so anyone on your side can re-run it and check my work.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Work sample. Sources and code for every figure are included.<br>Prepared by <span style="color:var(--ink-2)">[your name]</span> · <span style="color:var(--ink-2)">[your email]</span></p>
+    <p class="sig">Available for research &amp; data work</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = /*__DATA__*/;
+
+/* ---------- tiny svg helpers ---------- */
+const NS = 'http://www.w3.org/2000/svg';
+const S = (t, a = {}) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+const T = (x, y, s, cls, extra = {}) => { const e = S('text', Object.assign({ x, y, class: cls }, extra)); e.textContent = s; return e; };
+const fmt = (v, d = 1) => Number(v).toFixed(d);
+
+function mount(id, draw) {
+  const box = document.getElementById(id);
+  if (!box) return;
+  let w = 0;
+  const render = () => {
+    const nw = box.clientWidth;
+    if (!nw || Math.abs(nw - w) < 2) return;
+    w = nw;
+    box.innerHTML = '';
+    draw(box, nw);
+  };
+  if (window.ResizeObserver) new ResizeObserver(render).observe(box);
+  render();
+  window.addEventListener('resize', render);
+}
+
+function tipFor(box) {
+  const d = document.createElement('div');
+  d.className = 'tip'; d.hidden = true;
+  box.appendChild(d);
+  return {
+    show(x, y, html) {
+      d.innerHTML = html; d.hidden = false;
+      const bw = box.clientWidth, tw = d.offsetWidth, th = d.offsetHeight;
+      let l = x + 14;
+      if (l + tw > bw - 2) l = x - tw - 14;
+      d.style.left = Math.max(0, l) + 'px';
+      d.style.top = Math.max(0, y - th - 12) + 'px';
+    },
+    hide() { d.hidden = true; }
+  };
+}
+
+function legend(id, items) {
+  const ul = document.getElementById(id);
+  if (!ul) return;
+  ul.innerHTML = '';
+  items.forEach(it => {
+    const li = document.createElement('li');
+    const sw = document.createElement('span');
+    sw.className = 'sw ' + (it.shape || '');
+    sw.style.background = it.color;
+    li.appendChild(sw);
+    li.appendChild(document.createTextNode(it.label));
+    ul.appendChild(li);
+  });
+}
+
+function buildTable(id, caption, head, rows) {
+  const host = document.getElementById(id);
+  if (!host) return;
+  const t = document.createElement('table');
+  t.className = 'dt';
+  const cap = document.createElement('caption');
+  cap.textContent = caption;
+  t.appendChild(cap);
+  const th = document.createElement('thead');
+  const trh = document.createElement('tr');
+  head.forEach((h, i) => {
+    const e = document.createElement('th');
+    e.textContent = h; if (i > 0) e.className = 'n';
+    trh.appendChild(e);
+  });
+  th.appendChild(trh); t.appendChild(th);
+  const tb = document.createElement('tbody');
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    r.forEach((c, i) => {
+      const td = document.createElement('td');
+      td.textContent = c; if (i > 0) td.className = 'n';
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  host.innerHTML = '';
+  host.appendChild(t);
+}
+
+/* ================= 01a  dumbbell ================= */
+function drawDumbbell(box, W) {
+  const enters = DATA.s1.entrants;
+  const exits = DATA.s1.exits;
+  const rows = [
+    ...enters.map(d => ({ c: d.country, a: d.renew_first, b: d.renew_last, up: true, kind: d.kind })),
+    ...exits.map(d => ({ c: d.country, a: d.renew_first, b: d.renew_last, up: false }))
+  ];
+  const narrow = W < 560;
+  const P = { l: narrow ? 96 : 122, r: narrow ? 44 : 58, t: 18, b: 46 };
+  const rowH = 21, gap = 30;
+  const H = P.t + rows.length * rowH + gap + P.b;
+  const iw = W - P.l - P.r;
+  const x = v => P.l + (v / 100) * iw;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Dumbbell chart of renewable electricity share in 2000 and the latest year' });
+  const tp = tipFor(box);
+
+  // grid + ticks
+  [0, 25, 50, 75, 100].forEach(v => {
+    svg.appendChild(S('line', { x1: x(v), x2: x(v), y1: P.t - 6, y2: H - P.b + 8, class: v === 50 ? 'g-axis' : 'g-grid' }));
+    svg.appendChild(T(x(v), H - P.b + 26, v + '%', 'tick', { 'text-anchor': 'middle' }));
+  });
+  svg.appendChild(T(x(50), P.t - 10, '50% — majority renewable', 'axlab', { 'text-anchor': 'middle' }));
+
+  let y = P.t;
+  rows.forEach((r, i) => {
+    if (i === enters.length) y += gap;
+    const cy = y + rowH / 2;
+    r.cy = cy;
+    const col = r.up ? 'var(--pos)' : 'var(--neg)';
+
+    const lab = narrow && r.c.length > 15 ? r.c.slice(0, 14) + '…' : r.c;
+    svg.appendChild(T(0, cy + 4, lab, 'rowlab', { style: narrow ? 'font-size:11px' : '' }));
+
+    svg.appendChild(S('line', {
+      x1: x(r.a), x2: x(r.b), y1: cy, y2: cy,
+      style: `stroke:${col}`, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .55
+    }));
+    svg.appendChild(S('circle', {
+      cx: x(r.a), cy, r: 3.4, fill: 'none',
+      style: 'stroke:var(--ink-3)', 'stroke-width': 1.4
+    }));
+    svg.appendChild(S('circle', {
+      cx: x(r.b), cy, r: 4.6, style: `fill:${col};stroke:var(--surface)`, 'stroke-width': 2
+    }));
+
+    const hit = S('rect', { x: 0, y: y, width: W, height: rowH, fill: 'transparent', style: 'cursor:default' });
+    const html = `<b>${r.c}</b><br><span class="tk">2000</span> ${fmt(r.a)}% <span class="tk">→</span> <b>${fmt(r.b)}%</b><br><span class="tk">${(r.b - r.a > 0 ? '+' : '')}${fmt(r.b - r.a)} pts</span>`;
+    hit.addEventListener('pointermove', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top, html);
+    });
+    hit.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(hit);
+    y += rowH;
+  });
+
+  // two annotations, kept sparing
+  const big = rows.find(r => r.c === 'Congo');
+  const rise = rows.find(r => r.c === 'Sierra Leone');
+  if (big && !narrow) {
+    svg.appendChild(T(x(big.b) + 9, big.cy + 4, '−79 pts', 'dlabel', { style: 'fill:var(--ink-3);font-size:10.5px' }));
+  }
+  if (rise && !narrow) {
+    svg.appendChild(T(x(rise.b) - 9, rise.cy - 7, '+84 pts', 'dlabel', { 'text-anchor': 'end', style: 'font-size:10.5px' }));
+  }
+
+  box.appendChild(svg);
+}
+
+/* ================= 01b  stacked columns ================= */
+function drawStacked(box, W) {
+  const es = DATA.s1.entrants.map(d => ({ y: d.cross_year, k: d.kind }));
+  const bucket = y => y < 2010 ? '2000s' : (y < 2020 ? '2010s' : '2020s');
+  const decs = ['2000s', '2010s', '2020s'];
+  const keys = ['hydro', 'mixed', 'wind & solar'];
+  const labelOf = { hydro: 'Hydro', mixed: 'Mixed', 'wind & solar': 'Wind & solar' };
+  const colors = { hydro: 'var(--s1)', mixed: 'var(--s2)', 'wind & solar': 'var(--s3)' };
+  const data = decs.map(d => {
+    const set = es.filter(e => bucket(e.y) === d);
+    const o = { d, total: set.length };
+    keys.forEach(k => o[k] = set.filter(e => e.k === k).length);
+    return o;
+  });
+
+  const P = { l: 76, r: 76, t: 26, b: 40 };
+  const rowH = 60, bh = 24;
+  const H = P.t + data.length * rowH + P.b;
+  const iw = W - P.l - P.r;
+  const maxX = 8;
+  const x = v => P.l + (v / maxX) * iw;
+  const narrow2 = W < 560;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Stacked bar chart of entrants by decade and tipping technology' });
+  const tp = tipFor(box);
+
+  for (let v = 0; v <= maxX; v += 2) {
+    svg.appendChild(S('line', { x1: x(v), x2: x(v), y1: P.t - 6, y2: H - P.b + 4, class: v === 0 ? 'g-axis' : 'g-grid' }));
+    svg.appendChild(T(x(v), H - P.b + 22, v, 'tick', { 'text-anchor': 'middle' }));
+  }
+  svg.appendChild(T(x(0), P.t - 10, 'grids joining', 'axlab', { 'text-anchor': 'start' }));
+
+  data.forEach((d, i) => {
+    const cy = P.t + i * rowH + rowH / 2;
+    const label = i === 2 ? '2020–24' : d.d;
+    svg.appendChild(T(0, cy + 4, label, 'rowlab', { style: narrow2 ? 'font-size:11px' : '' }));
+
+    let acc = 0;
+    keys.forEach(k => {
+      const v = d[k];
+      if (!v) return;
+      const x0 = x(acc), x1 = x(acc + v);
+      const w = Math.max(0, x1 - x0 - 2);          // 2px surface gap between segments
+      svg.appendChild(S('rect', { x: x0, y: cy - bh / 2, width: w, height: bh, rx: 2, style: `fill:${colors[k]}` }));
+      if (w >= 22) {
+        svg.appendChild(T(x0 + w / 2, cy + 4, v, 'dlabel', { 'text-anchor': 'middle', style: 'fill:#fff' }));
+      }
+      acc += v;
+    });
+    svg.appendChild(T(x(d.total) + 10, cy + 4, d.total, 'dlabel'));
+
+    const html = `<b>${label}</b> · ${d.total} joined<br>` +
+      keys.map(k => `<span class="tk">${labelOf[k]}</span> ${d[k]}`).join('<br>');
+    const hit = S('rect', { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: 'transparent' });
+    hit.addEventListener('pointermove', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top, html);
+    });
+    hit.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(hit);
+  });
+
+  box.appendChild(svg);
+  legend('c2-legend', keys.map(k => ({ label: labelOf[k], color: colors[k] })));
+}
+
+/* ================= 02a  indexed lines ================= */
+function drawLines(box, W) {
+  const idx = DATA.s2.indexed;
+  const series = [
+    { name: 'Food away from home', key: 'Food away from home', color: 'var(--s2)' },
+    { name: 'Average hourly earnings', key: 'Average hourly earnings', color: 'var(--s3)' },
+    { name: 'Food at home', key: 'Food at home', color: 'var(--s1)' }
+  ].map(s => ({ ...s, pts: idx[s.key] }));
+
+  const n = series[0].pts.length;
+  const all = series.flatMap(s => s.pts.map(p => p.v));
+  const lo = Math.floor(Math.min(...all) / 5) * 5 - 2;
+  const hi = Math.ceil(Math.max(...all) / 5) * 5 + 2;
+
+  const narrow = W < 560;
+  const P = { l: 40, r: narrow ? 12 : 108, t: 22, b: 40 };
+  const H = narrow ? 300 : 340;
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+  const x = i => P.l + (i / (n - 1)) * iw;
+  const y = v => P.t + ih - ((v - lo) / (hi - lo)) * ih;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Indexed line chart' });
+  const tp = tipFor(box);
+
+  for (let v = lo; v <= hi; v += 10) {
+    svg.appendChild(S('line', { x1: P.l, x2: W - P.r, y1: y(v), y2: y(v), class: v === 100 ? 'g-axis' : 'g-grid' }));
+    svg.appendChild(T(P.l - 9, y(v) + 4, v, 'tick', { 'text-anchor': 'end' }));
+  }
+  svg.appendChild(T(P.l - 9, P.t - 9, 'index', 'axlab', { 'text-anchor': 'end' }));
+
+  // x ticks at Jan of each year
+  series[0].pts.forEach((p, i) => {
+    if (p.d.endsWith('-01') || i === 0) {
+      svg.appendChild(T(x(i), H - P.b + 22, p.d.slice(0, 4), 'tick', { 'text-anchor': 'middle' }));
+    }
+  });
+
+  const ends = [];
+  series.forEach(s => {
+    let d = '';
+    s.pts.forEach((p, i) => { d += (i ? 'L' : 'M') + x(i) + ' ' + y(p.v); });
+    svg.appendChild(S('path', { d, fill: 'none', style: `stroke:${s.color}`, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    const last = s.pts[s.pts.length - 1];
+    svg.appendChild(S('circle', { cx: x(n - 1), cy: y(last.v), r: 4.2, style: `fill:${s.color};stroke:var(--surface)`, 'stroke-width': 2 }));
+    ends.push({ y: y(last.v), text: fmt(last.v, 1) });
+  });
+
+  if (!narrow) {
+    // the three endpoints sit within a few points of each other: keep the labels
+    // apart and draw a leader back to the dot wherever one had to move
+    ends.sort((a, b) => a.y - b.y);
+    let prev = -1e9;
+    ends.forEach(e => { e.ly = Math.max(e.y, prev + 16); prev = e.ly; });
+    const overflow = ends[ends.length - 1].ly - (P.t + ih) + 2;
+    if (overflow > 0) ends.forEach(e => { e.ly -= overflow; });
+    ends.forEach(e => {
+      svg.appendChild(S('line', {
+        x1: x(n - 1) + 5, y1: e.y, x2: x(n - 1) + 11, y2: e.ly,
+        style: 'stroke:var(--rule-strong)', 'stroke-width': 1
+      }));
+      svg.appendChild(T(x(n - 1) + 15, e.ly + 4, e.text, 'dlabel'));
+    });
+  }
+
+  // crosshair + tooltip
+  const cross = S('line', { y1: P.t, y2: P.t + ih, class: 'g-ref', style: 'stroke:var(--rule-strong)', opacity: 0 });
+  svg.appendChild(cross);
+  const dots = series.map(s => {
+    const c = S('circle', { r: 3.6, opacity: 0, style: `fill:${s.color};stroke:var(--surface)`, 'stroke-width': 2 });
+    svg.appendChild(c); return c;
+  });
+  const over = S('rect', { x: P.l, y: P.t, width: iw, height: ih, fill: 'transparent' });
+  over.addEventListener('pointermove', ev => {
+    const bb = box.getBoundingClientRect();
+    const px = ev.clientX - bb.left;
+    const i = Math.max(0, Math.min(n - 1, Math.round((px - P.l) / iw * (n - 1))));
+    cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('opacity', 1);
+    series.forEach((s, k) => {
+      dots[k].setAttribute('cx', x(i)); dots[k].setAttribute('cy', y(s.pts[i].v)); dots[k].setAttribute('opacity', 1);
+    });
+    tp.show(px, y(series[0].pts[i].v),
+      `<b>${series[0].pts[i].d}</b><br>` +
+      series.map(s => `<span class="tk">${s.name}</span> <b>${fmt(s.pts[i].v, 1)}</b>`).join('<br>'));
+  });
+  over.addEventListener('pointerleave', () => {
+    cross.setAttribute('opacity', 0);
+    dots.forEach(d => d.setAttribute('opacity', 0));
+    tp.hide();
+  });
+  svg.appendChild(over);
+
+  box.appendChild(svg);
+  legend('c3-legend', series.map(s => ({ label: s.name, color: s.color, shape: 'line' })));
+}
+
+/* ================= 02b  ranked bars ================= */
+function drawBars(box, W) {
+  const rows = DATA.s2.categories.filter(c => c.series !== 'CPIAUCSL')
+    .slice().sort((a, b) => b.chg_pct - a.chg_pct);
+  const wage = DATA.s2.wage_growth_pct;
+  const narrow = W < 560;
+  const P = { l: narrow ? 128 : 176, r: 54, t: 30, b: 34 };
+  const rowH = 30;
+  const H = P.t + rows.length * rowH + P.b;
+  const iw = W - P.l - P.r;
+  const maxV = 46;
+  const x = v => P.l + (v / maxV) * iw;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Ranked bar chart of grocery category price change' });
+  const tp = tipFor(box);
+
+  for (let v = 0; v <= 40; v += 10) {
+    svg.appendChild(S('line', { x1: x(v), x2: x(v), y1: P.t - 6, y2: H - P.b + 2, class: 'g-grid' }));
+    svg.appendChild(T(x(v), H - P.b + 21, v + '%', 'tick', { 'text-anchor': 'middle' }));
+  }
+
+  rows.forEach((r, i) => {
+    const cy = P.t + i * rowH + rowH / 2;
+    const bh = 18;
+    const lab = narrow && r.label.length > 17 ? r.label.slice(0, 16) + '…' : r.label;
+    svg.appendChild(T(0, cy + 4, lab, 'rowlab', { style: narrow ? 'font-size:11px' : '' }));
+
+    // bar with 4px rounded data-end, square at the baseline
+    const w = Math.max(2, x(r.chg_pct) - P.l);
+    const rr = 4;
+    const d = `M${P.l} ${cy - bh / 2} h${Math.max(0, w - rr)} a${rr} ${rr} 0 0 1 ${rr} ${rr} v${bh - rr * 2} a${rr} ${rr} 0 0 1 ${-rr} ${rr} h${-Math.max(0, w - rr)} z`;
+    svg.appendChild(S('path', { d, style: 'fill:var(--s1)' }));
+    svg.appendChild(T(P.l + w + 8, cy + 4, fmt(r.chg_pct, 1) + '%', 'dlabel'));
+
+    const diff = r.chg_pct - wage;
+    const html = `<b>${r.label}</b><br><span class="tk">price change</span> <b>+${fmt(r.chg_pct, 1)}%</b><br>` +
+      `<span class="tk">vs wages</span> ${diff >= 0 ? '+' : ''}${fmt(diff, 1)} pts`;
+    const hit = S('rect', { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: 'transparent' });
+    hit.addEventListener('pointermove', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top, html);
+    });
+    hit.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(hit);
+  });
+
+  // wage reference
+  svg.appendChild(S('line', { x1: x(wage), x2: x(wage), y1: P.t - 12, y2: H - P.b + 2, class: 'g-ref', style: 'stroke:var(--ink-2)' }));
+  svg.appendChild(T(x(wage) + 6, P.t - 16, 'wages +' + fmt(wage, 1) + '%', 'annot-b'));
+
+  box.appendChild(svg);
+}
+
+/* ================= 03a  log-log scatter ================= */
+function drawScatter(box, W) {
+  const pts = DATA.s3.series;
+  const fit = DATA.s3.fit;
+  const narrow = W < 560;
+  const P = { l: 54, r: 24, t: 30, b: 50 };
+  const H = narrow ? 330 : 380;
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+
+  const lx = v => Math.log10(v);
+  const xs = pts.map(p => lx(p.gw)), ys = pts.map(p => lx(p.usd_per_w));
+  const x0 = Math.floor(Math.min(...xs) * 10) / 10, x1 = Math.ceil(Math.max(...xs) * 10) / 10;
+  const y0 = Math.floor(Math.min(...ys) * 10) / 10, y1 = Math.ceil(Math.max(...ys) * 10) / 10;
+  const X = v => P.l + ((lx(v) - x0) / (x1 - x0)) * iw;
+  const Y = v => P.t + ih - ((lx(v) - y0) / (y1 - y0)) * ih;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Log-log scatter plot of solar module price against cumulative capacity' });
+  const tp = tipFor(box);
+
+  const xt = [1, 10, 100, 1000];
+  xt.forEach(v => {
+    if (lx(v) < x0 || lx(v) > x1) return;
+    svg.appendChild(S('line', { x1: X(v), x2: X(v), y1: P.t, y2: P.t + ih, class: 'g-grid' }));
+    svg.appendChild(T(X(v), P.t + ih + 21, v >= 1000 ? '1,000' : v, 'tick', { 'text-anchor': 'middle' }));
+  });
+  const yt = [0.3, 1, 3, 10];
+  yt.forEach(v => {
+    if (lx(v) < y0 || lx(v) > y1) return;
+    svg.appendChild(S('line', { x1: P.l, x2: W - P.r, y1: Y(v), y2: Y(v), class: 'g-grid' }));
+    svg.appendChild(T(P.l - 9, Y(v) + 4, '$' + (v < 1 ? v.toFixed(1) : v), 'tick', { 'text-anchor': 'end' }));
+  });
+  svg.appendChild(T(P.l + iw / 2, H - 8, 'cumulative installed capacity, GW (log)', 'axlab', { 'text-anchor': 'middle' }));
+  svg.appendChild(T(P.l - 9, P.t - 10, '$/W', 'axlab', { 'text-anchor': 'end' }));
+
+  // 2008-11 excursion band
+  const b0 = 2008, b1 = 2011;
+  const gx = y => { const p = pts.find(q => q.Year === y); return p ? X(p.gw) : null; };
+  const bx0 = gx(b0), bx1 = gx(b1);
+  if (bx0 && bx1) {
+    svg.appendChild(S('rect', { x: bx0 - 12, y: P.t, width: bx1 - bx0 + 24, height: ih, style: 'fill:var(--neg)', opacity: .06 }));
+    if (!narrow) {
+      svg.appendChild(T(bx0 - 12, P.t - 10, '2008–11', 'annot-b', { style: 'font-size:10.5px;fill:var(--neg)' }));
+    }
+  }
+
+  // fitted line
+  const a = fit.intercept, b = fit.slope;
+  const xa = Math.min(...pts.map(p => p.gw)), xb = Math.max(...pts.map(p => p.gw));
+  const ya = Math.exp(a + b * Math.log(xa)), yb = Math.exp(a + b * Math.log(xb));
+  svg.appendChild(S('line', {
+    x1: X(xa), y1: Y(ya), x2: X(xb), y2: Y(yb),
+    style: 'stroke:var(--ink-2)', 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .85
+  }));
+
+  pts.forEach(p => {
+    const c = S('circle', { cx: X(p.gw), cy: Y(p.usd_per_w), r: 4.4, style: 'fill:var(--s1);stroke:var(--surface)', 'stroke-width': 2 });
+    c.addEventListener('pointerenter', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top,
+        `<b>${p.Year}</b><br><span class="tk">price</span> $${fmt(p.usd_per_w, 3)}/W<br><span class="tk">capacity</span> ${Math.round(p.gw).toLocaleString()} GW`);
+    });
+    c.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(c);
+  });
+
+  const last = pts[pts.length - 1];
+  if (!narrow) {
+    svg.appendChild(T(X(last.gw) - 10, Y(last.usd_per_w) + 22, `${last.Year}: $${fmt(last.usd_per_w, 2)}/W`, 'dlabel', { 'text-anchor': 'end' }));
+  }
+
+  box.appendChild(svg);
+}
+
+/* ================= 03b  LCOE emphasis ================= */
+function drawLcoe(box, W) {
+  const src = DATA.s3.lcoe_series;
+  const names = ['Solar photovoltaic', 'Onshore wind', 'Offshore wind', 'Hydropower', 'Concentrated solar power'];
+  const short = { 'Solar photovoltaic': 'Solar PV', 'Onshore wind': 'Onshore wind', 'Offshore wind': 'Offshore wind', 'Hydropower': 'Hydropower', 'Concentrated solar power': 'CSP' };
+  const narrow = W < 560;
+  const P = { l: 52, r: narrow ? 86 : 104, t: 26, b: 40 };
+  const H = narrow ? 320 : 350;
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+
+  const all = names.flatMap(n => src[n].map(p => p.v));
+  const y0 = Math.log10(0.02), y1 = Math.log10(0.5);
+  const X = yr => P.l + ((yr - 2010) / 15) * iw;
+  const Y = v => P.t + ih - ((Math.log10(v) - y0) / (y1 - y0)) * ih;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Levelised cost of electricity by technology' });
+
+  [0.02, 0.05, 0.1, 0.25, 0.5].forEach(v => {
+    svg.appendChild(S('line', { x1: P.l, x2: W - P.r, y1: Y(v), y2: Y(v), class: 'g-grid' }));
+    svg.appendChild(T(P.l - 9, Y(v) + 4, '$' + v.toFixed(2), 'tick', { 'text-anchor': 'end' }));
+  });
+  [2010, 2015, 2020, 2025].forEach(yr => {
+    svg.appendChild(T(X(yr), H - P.b + 21, yr, 'tick', { 'text-anchor': 'middle' }));
+  });
+  svg.appendChild(T(P.l - 9, P.t - 9, '$/kWh', 'axlab', { 'text-anchor': 'end' }));
+
+  names.forEach(n => {
+    const isSolar = n === 'Solar photovoltaic';
+    const col = isSolar ? 'var(--s1)' : 'var(--mute-mark)';
+    let d = '';
+    src[n].forEach((p, i) => { d += (i ? 'L' : 'M') + X(p.year) + ' ' + Y(p.v); });
+    svg.appendChild(S('path', {
+      d, fill: 'none', style: `stroke:${col}`, 'stroke-width': isSolar ? 2.4 : 1.4,
+      'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: isSolar ? 1 : .85
+    }));
+    const last = src[n][src[n].length - 1];
+    if (isSolar) {
+      svg.appendChild(S('circle', { cx: X(last.year), cy: Y(last.v), r: 4.2, style: 'fill:var(--s1);stroke:var(--surface)', 'stroke-width': 2 }));
+    }
+    svg.appendChild(T(X(last.year) + 8, Y(last.v) + 4, short[n], isSolar ? 'dlabel' : 'annot', {
+      style: isSolar ? 'font-size:11px' : 'font-size:10.5px;fill:var(--ink-3)'
+    }));
+  });
+
+  box.appendChild(svg);
+  legend('c6-legend', [
+    { label: 'Solar PV', color: 'var(--s1)', shape: 'line' },
+    { label: 'Other technologies (4)', color: 'var(--mute-mark)', shape: 'line' }
+  ]);
+}
+
+function boot() {
+  mount('c1', drawDumbbell);
+  mount('c2', drawStacked);
+  mount('c3', drawLines);
+  mount('c4', drawBars);
+  mount('c5', drawScatter);
+  mount('c6', drawLcoe);
+
+  // legends for the two charts drawn without one
+  legend('c1-legend', [
+    { label: 'Joined the 50% club (16)', color: 'var(--pos)', shape: 'dot' },
+    { label: 'Left it (10)', color: 'var(--neg)', shape: 'dot' }
+  ]);
+
+  // tables
+  const ent = DATA.s1.entrants, ex = DATA.s1.exits;
+  buildTable('c1-table', 'Renewable share of electricity, 2000 vs latest year',
+    ['Country', 'Group', '2000', 'Latest', 'Change (pts)'],
+    [...ent.map(d => [d.country, 'Joined', fmt(d.renew_first), fmt(d.renew_last), '+' + fmt(d.renew_last - d.renew_first)]),
+     ...ex.map(d => [d.country, 'Left', fmt(d.renew_first), fmt(d.renew_last), fmt(d.renew_last - d.renew_first)])]);
+
+  const bucket = y => y < 2010 ? '2000s' : (y < 2020 ? '2010s' : '2020–24');
+  const dec = ['2000s', '2010s', '2020–24'];
+  const kk = ['hydro', 'mixed', 'wind & solar'];
+  buildTable('c2-table', 'Entrants by decade and tipping technology',
+    ['Decade', 'Hydro', 'Mixed', 'Wind & solar', 'Total'],
+    dec.map(d => {
+      const set = ent.filter(e => bucket(e.cross_year) === d);
+      return [d, ...kk.map(k => set.filter(e => e.kind === k).length), set.length];
+    }));
+
+  buildTable('c3-table', 'Indexed price and wage series, selected months',
+    ['Month', 'Food at home', 'Food away', 'Hourly earnings'],
+    DATA.s2.indexed['Food at home'].filter((_, i, a) => i % 12 === 0 || i === a.length - 1).map((p, i, arr) => {
+      const j = DATA.s2.indexed['Food at home'].indexOf(p);
+      return [p.d,
+        fmt(DATA.s2.indexed['Food at home'][j].v),
+        fmt(DATA.s2.indexed['Food away from home'][j].v),
+        fmt(DATA.s2.indexed['Average hourly earnings'][j].v)];
+    }));
+
+  buildTable('c4-table', 'Cumulative price change by category, Jan 2020 – Sep 2026',
+    ['Category', 'Change'],
+    DATA.s2.categories.filter(c => c.series !== 'CPIAUCSL')
+      .sort((a, b) => b.chg_pct - a.chg_pct)
+      .map(c => [c.label, '+' + fmt(c.chg_pct) + '%'])
+      .concat([['Average hourly earnings', '+' + fmt(DATA.s2.wage_growth_pct) + '%']]));
+
+  buildTable('c5-table', 'Solar module price and cumulative capacity',
+    ['Year', 'Capacity (GW)', 'Price ($/W)', 'Fitted ($/W)'],
+    DATA.s3.series.map(p => [p.Year, Math.round(p.gw).toLocaleString(), fmt(p.usd_per_w, 3), fmt(p.fit, 3)]));
+
+  buildTable('c6-table', 'Levelised cost of electricity, USD/kWh',
+    ['Year', 'Solar PV', 'Onshore wind', 'Offshore wind', 'Hydropower', 'CSP'],
+    DATA.s3.lcoe_series['Solar photovoltaic'].map(p => {
+      const yr = p.year;
+      const get = n => { const f = DATA.s3.lcoe_series[n].find(q => q.year === yr); return f ? fmt(f.v, 3) : '—'; };
+      return [yr, fmt(p.v, 3), get('Onshore wind'), get('Offshore wind'), get('Hydropower'), get('Concentrated solar power')];
+    }));
+
+  document.querySelectorAll('.tbl-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.target;
+      const tbl = document.getElementById(id + '-table');
+      const body = document.getElementById(id);
+      const showTable = tbl.hidden;
+      tbl.hidden = !showTable;
+      body.hidden = showTable;
+      btn.textContent = showTable ? 'Chart' : 'Table';
+      btn.setAttribute('aria-expanded', String(showTable));
+    });
+  });
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
+</script>

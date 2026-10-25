@@ -1,0 +1,758 @@
+{
+  "meta": {
+    "source": "Ember via Our World in Data (electricity shares); World Bank (population filter)",
+    "window": "2000-2025",
+    "threshold": 50.0,
+    "min_population": 1000000
+  },
+  "summary": {
+    "sample": 156,
+    "majority_first": 51,
+    "majority_last": 57,
+    "entrants": 16,
+    "exits": 10,
+    "entrants_by_kind": {
+      "wind & solar": 7,
+      "hydro": 6,
+      "mixed": 3
+    },
+    "entrants_by_decade": {
+      "2000": 3,
+      "2010": 6,
+      "2020": 7
+    }
+  },
+  "entrants": [
+    {
+      "country": "Chile",
+      "code": "CHL",
+      "cross_year": 2001.0,
+      "kind": "hydro",
+      "renew_first": 49.8,
+      "renew_last": 66.4,
+      "vres_last": 38.1
+    },
+    {
+      "country": "Kenya",
+      "code": "KEN",
+      "cross_year": 2001.0,
+      "kind": "hydro",
+      "renew_first": 40.4,
+      "renew_last": 90.0,
+      "vres_last": 21.0
+    },
+    {
+      "country": "Zimbabwe",
+      "code": "ZWE",
+      "cross_year": 2003.0,
+      "kind": "hydro",
+      "renew_first": 45.6,
+      "renew_last": 57.1,
+      "vres_last": 0.4
+    },
+    {
+      "country": "Sierra Leone",
+      "code": "SLE",
+      "cross_year": 2010.0,
+      "kind": "hydro",
+      "renew_first": 11.1,
+      "renew_last": 95.2,
+      "vres_last": 9.5
+    },
+    {
+      "country": "Portugal",
+      "code": "PRT",
+      "cross_year": 2010.0,
+      "kind": "mixed",
+      "renew_first": 29.8,
+      "renew_last": 81.0,
+      "vres_last": 44.1
+    },
+    {
+      "country": "Sri Lanka",
+      "code": "LKA",
+      "cross_year": 2010.0,
+      "kind": "hydro",
+      "renew_first": 47.3,
+      "renew_last": 61.6,
+      "vres_last": 21.9
+    },
+    {
+      "country": "Nicaragua",
+      "code": "NIC",
+      "cross_year": 2013.0,
+      "kind": "mixed",
+      "renew_first": 21.5,
+      "renew_last": 62.4,
+      "vres_last": 13.1
+    },
+    {
+      "country": "Denmark",
+      "code": "DNK",
+      "cross_year": 2014.0,
+      "kind": "wind & solar",
+      "renew_first": 15.5,
+      "renew_last": 91.2,
+      "vres_last": 71.1
+    },
+    {
+      "country": "Lithuania",
+      "code": "LTU",
+      "cross_year": 2016.0,
+      "kind": "wind & solar",
+      "renew_first": 3.1,
+      "renew_last": 77.6,
+      "vres_last": 63.7
+    },
+    {
+      "country": "Finland",
+      "code": "FIN",
+      "cross_year": 2020.0,
+      "kind": "mixed",
+      "renew_first": 33.4,
+      "renew_last": 56.5,
+      "vres_last": 28.6
+    },
+    {
+      "country": "Germany",
+      "code": "DEU",
+      "cross_year": 2023.0,
+      "kind": "wind & solar",
+      "renew_first": 6.2,
+      "renew_last": 59.1,
+      "vres_last": 45.1
+    },
+    {
+      "country": "Liberia",
+      "code": "LBR",
+      "cross_year": 2023.0,
+      "kind": "hydro",
+      "renew_first": 0.0,
+      "renew_last": 54.4,
+      "vres_last": 1.8
+    },
+    {
+      "country": "Spain",
+      "code": "ESP",
+      "cross_year": 2023.0,
+      "kind": "wind & solar",
+      "renew_first": 15.6,
+      "renew_last": 55.9,
+      "vres_last": 42.3
+    },
+    {
+      "country": "Estonia",
+      "code": "EST",
+      "cross_year": 2024.0,
+      "kind": "wind & solar",
+      "renew_first": 0.1,
+      "renew_last": 59.6,
+      "vres_last": 37.3
+    },
+    {
+      "country": "Netherlands",
+      "code": "NLD",
+      "cross_year": 2024.0,
+      "kind": "wind & solar",
+      "renew_first": 3.4,
+      "renew_last": 51.2,
+      "vres_last": 46.1
+    },
+    {
+      "country": "United Kingdom",
+      "code": "GBR",
+      "cross_year": 2024.0,
+      "kind": "wind & solar",
+      "renew_first": 2.6,
+      "renew_last": 52.0,
+      "vres_last": 36.0
+    }
+  ],
+  "exits": [
+    {
+      "country": "Congo",
+      "code": "COG",
+      "renew_first": 100.0,
+      "renew_last": 20.9,
+      "delta": -79.1
+    },
+    {
+      "country": "Ghana",
+      "code": "GHA",
+      "renew_first": 91.4,
+      "renew_last": 36.2,
+      "delta": -55.2
+    },
+    {
+      "country": "Tanzania",
+      "code": "TZA",
+      "renew_first": 86.4,
+      "renew_last": 32.9,
+      "delta": -53.50000000000001
+    },
+    {
+      "country": "Haiti",
+      "code": "HTI",
+      "renew_first": 51.9,
+      "renew_last": 18.6,
+      "delta": -33.3
+    },
+    {
+      "country": "Gabon",
+      "code": "GAB",
+      "renew_first": 61.8,
+      "renew_last": 35.4,
+      "delta": -26.4
+    },
+    {
+      "country": "Togo",
+      "code": "TGO",
+      "renew_first": 55.6,
+      "renew_last": 29.6,
+      "delta": -26.0
+    },
+    {
+      "country": "Madagascar",
+      "code": "MDG",
+      "renew_first": 64.0,
+      "renew_last": 42.4,
+      "delta": -21.6
+    },
+    {
+      "country": "Bolivia",
+      "code": "BOL",
+      "renew_first": 51.5,
+      "renew_last": 36.1,
+      "delta": -15.399999999999999
+    },
+    {
+      "country": "Rwanda",
+      "code": "RWA",
+      "renew_first": 62.5,
+      "renew_last": 49.6,
+      "delta": -12.899999999999999
+    },
+    {
+      "country": "Vietnam",
+      "code": "VNM",
+      "renew_first": 54.8,
+      "renew_last": 45.4,
+      "delta": -9.399999999999999
+    }
+  ],
+  "members_last": [
+    {
+      "country": "Albania",
+      "code": "ALB",
+      "renew_last": 100.0,
+      "vres_last": 4.1,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Democratic Republic of Congo",
+      "code": "COD",
+      "renew_last": 100.0,
+      "vres_last": 15.8,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Ethiopia",
+      "code": "ETH",
+      "renew_last": 100.0,
+      "vres_last": 3.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Costa Rica",
+      "code": "CRI",
+      "renew_last": 100.0,
+      "vres_last": 12.8,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Nepal",
+      "code": "NPL",
+      "renew_last": 100.0,
+      "vres_last": 1.2,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Paraguay",
+      "code": "PRY",
+      "renew_last": 100.0,
+      "vres_last": 0.0,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Norway",
+      "code": "NOR",
+      "renew_last": 99.0,
+      "vres_last": 8.8,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Uruguay",
+      "code": "URY",
+      "renew_last": 97.8,
+      "vres_last": 45.7,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Namibia",
+      "code": "NAM",
+      "renew_last": 97.6,
+      "vres_last": 36.6,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Uganda",
+      "code": "UGA",
+      "renew_last": 97.1,
+      "vres_last": 2.9,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Eswatini",
+      "code": "SWZ",
+      "renew_last": 96.7,
+      "vres_last": 4.9,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Malawi",
+      "code": "MWI",
+      "renew_last": 95.6,
+      "vres_last": 0.5,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Sierra Leone",
+      "code": "SLE",
+      "renew_last": 95.2,
+      "vres_last": 9.5,
+      "kind": "hydro",
+      "cross_year": 2010.0,
+      "already": false
+    },
+    {
+      "country": "Tajikistan",
+      "code": "TJK",
+      "renew_last": 94.4,
+      "vres_last": 0.0,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Denmark",
+      "code": "DNK",
+      "renew_last": 91.2,
+      "vres_last": 71.1,
+      "kind": "wind & solar",
+      "cross_year": 2014.0,
+      "already": false
+    },
+    {
+      "country": "Venezuela",
+      "code": "VEN",
+      "renew_last": 91.1,
+      "vres_last": 0.0,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Kenya",
+      "code": "KEN",
+      "renew_last": 90.0,
+      "vres_last": 21.0,
+      "kind": "hydro",
+      "cross_year": 2001.0,
+      "already": false
+    },
+    {
+      "country": "New Zealand",
+      "code": "NZL",
+      "renew_last": 88.5,
+      "vres_last": 10.6,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Zambia",
+      "code": "ZMB",
+      "renew_last": 87.5,
+      "vres_last": 0.9,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Afghanistan",
+      "code": "AFG",
+      "renew_last": 86.9,
+      "vres_last": 11.1,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Brazil",
+      "code": "BRA",
+      "renew_last": 86.6,
+      "vres_last": 27.5,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "El Salvador",
+      "code": "SLV",
+      "renew_last": 86.5,
+      "vres_last": 23.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Kyrgyzstan",
+      "code": "KGZ",
+      "renew_last": 84.7,
+      "vres_last": 0.0,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Austria",
+      "code": "AUT",
+      "renew_last": 83.6,
+      "vres_last": 25.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Mozambique",
+      "code": "MOZ",
+      "renew_last": 83.4,
+      "vres_last": 0.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Portugal",
+      "code": "PRT",
+      "renew_last": 81.0,
+      "vres_last": 44.1,
+      "kind": "mixed",
+      "cross_year": 2010.0,
+      "already": false
+    },
+    {
+      "country": "Sudan",
+      "code": "SDN",
+      "renew_last": 79.7,
+      "vres_last": 1.1,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Georgia",
+      "code": "GEO",
+      "renew_last": 79.6,
+      "vres_last": 0.8,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Ecuador",
+      "code": "ECU",
+      "renew_last": 79.4,
+      "vres_last": 0.6,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Lithuania",
+      "code": "LTU",
+      "renew_last": 77.6,
+      "vres_last": 63.7,
+      "kind": "wind & solar",
+      "cross_year": 2016.0,
+      "already": false
+    },
+    {
+      "country": "Colombia",
+      "code": "COL",
+      "renew_last": 77.0,
+      "vres_last": 5.3,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Laos",
+      "code": "LAO",
+      "renew_last": 76.7,
+      "vres_last": 0.2,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Croatia",
+      "code": "HRV",
+      "renew_last": 76.3,
+      "vres_last": 30.2,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Burundi",
+      "code": "BDI",
+      "renew_last": 75.5,
+      "vres_last": 0.0,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Guinea",
+      "code": "GIN",
+      "renew_last": 75.2,
+      "vres_last": 0.7,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Angola",
+      "code": "AGO",
+      "renew_last": 73.7,
+      "vres_last": 2.8,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Cameroon",
+      "code": "CMR",
+      "renew_last": 73.1,
+      "vres_last": 0.6,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Latvia",
+      "code": "LVA",
+      "renew_last": 73.0,
+      "vres_last": 16.6,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Sweden",
+      "code": "SWE",
+      "renew_last": 71.2,
+      "vres_last": 25.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Guatemala",
+      "code": "GTM",
+      "renew_last": 68.3,
+      "vres_last": 4.1,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Panama",
+      "code": "PAN",
+      "renew_last": 68.0,
+      "vres_last": 14.5,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Switzerland",
+      "code": "CHE",
+      "renew_last": 67.8,
+      "vres_last": 12.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Chile",
+      "code": "CHL",
+      "renew_last": 66.4,
+      "vres_last": 38.1,
+      "kind": "hydro",
+      "cross_year": 2001.0,
+      "already": false
+    },
+    {
+      "country": "Canada",
+      "code": "CAN",
+      "renew_last": 63.9,
+      "vres_last": 9.4,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Peru",
+      "code": "PER",
+      "renew_last": 63.6,
+      "vres_last": 6.5,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "North Korea",
+      "code": "PRK",
+      "renew_last": 63.4,
+      "vres_last": 0.6,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Nicaragua",
+      "code": "NIC",
+      "renew_last": 62.4,
+      "vres_last": 13.1,
+      "kind": "mixed",
+      "cross_year": 2013.0,
+      "already": false
+    },
+    {
+      "country": "Sri Lanka",
+      "code": "LKA",
+      "renew_last": 61.6,
+      "vres_last": 21.9,
+      "kind": "hydro",
+      "cross_year": 2010.0,
+      "already": false
+    },
+    {
+      "country": "Estonia",
+      "code": "EST",
+      "renew_last": 59.6,
+      "vres_last": 37.3,
+      "kind": "wind & solar",
+      "cross_year": 2024.0,
+      "already": false
+    },
+    {
+      "country": "Germany",
+      "code": "DEU",
+      "renew_last": 59.1,
+      "vres_last": 45.1,
+      "kind": "wind & solar",
+      "cross_year": 2023.0,
+      "already": false
+    },
+    {
+      "country": "Zimbabwe",
+      "code": "ZWE",
+      "renew_last": 57.1,
+      "vres_last": 0.4,
+      "kind": "hydro",
+      "cross_year": 2003.0,
+      "already": false
+    },
+    {
+      "country": "Finland",
+      "code": "FIN",
+      "renew_last": 56.5,
+      "vres_last": 28.6,
+      "kind": "mixed",
+      "cross_year": 2020.0,
+      "already": false
+    },
+    {
+      "country": "Spain",
+      "code": "ESP",
+      "renew_last": 55.9,
+      "vres_last": 42.3,
+      "kind": "wind & solar",
+      "cross_year": 2023.0,
+      "already": false
+    },
+    {
+      "country": "Honduras",
+      "code": "HND",
+      "renew_last": 55.4,
+      "vres_last": 15.5,
+      "kind": "hydro",
+      "cross_year": 2000.0,
+      "already": true
+    },
+    {
+      "country": "Liberia",
+      "code": "LBR",
+      "renew_last": 54.4,
+      "vres_last": 1.8,
+      "kind": "hydro",
+      "cross_year": 2023.0,
+      "already": false
+    },
+    {
+      "country": "United Kingdom",
+      "code": "GBR",
+      "renew_last": 52.0,
+      "vres_last": 36.0,
+      "kind": "wind & solar",
+      "cross_year": 2024.0,
+      "already": false
+    },
+    {
+      "country": "Netherlands",
+      "code": "NLD",
+      "renew_last": 51.2,
+      "vres_last": 46.1,
+      "kind": "wind & solar",
+      "cross_year": 2024.0,
+      "already": false
+    }
+  ]
+}

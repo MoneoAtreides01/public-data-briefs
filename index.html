@@ -1,0 +1,1069 @@
+<title>Public Data Briefs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+/* ---------------------------------------------------------------
+   Public Data Briefs - a research & data work sample.
+   Three briefs, each: public source -> stated method -> one answer.
+   Tokens first; every colour below is derived from them.
+   --------------------------------------------------------------- */
+:root{
+  color-scheme: light;
+  --bg:#f2f4f1;
+  --surface:#fbfcfa;
+  --ink:#0f1713;
+  --ink-2:#4a5650;
+  --ink-3:#78847d;
+  --rule:#dde3dc;
+  --rule-strong:#c6cfc7;
+  --accent:#0f6b4f;
+  --accent-soft:#e2efe8;
+  --accent-ink:#0b5440;
+
+  --s1:#2a78d6;
+  --s2:#eb6834;
+  --s3:#1baf7a;
+  --pos:#2a78d6;
+  --neg:#e34948;
+  --mute-mark:#8d978f;
+  --grid:#e4eae3;
+  --axis:#c2ccc4;
+
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#0c100e;
+    --surface:#131815;
+    --ink:#eef1ed;
+    --ink-2:#b0bab3;
+    --ink-3:#7d887f;
+    --rule:#232a25;
+    --rule-strong:#333c35;
+    --accent:#57c39b;
+    --accent-soft:#152e25;
+    --accent-ink:#7ad3b1;
+
+    --s1:#3987e5;
+    --s2:#d95926;
+    --s3:#199e70;
+    --pos:#3987e5;
+    --neg:#e66767;
+    --mute-mark:#78847d;
+    --grid:#1f2621;
+    --axis:#333c35;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#0c100e;
+  --surface:#131815;
+  --ink:#eef1ed;
+  --ink-2:#b0bab3;
+  --ink-3:#7d887f;
+  --rule:#232a25;
+  --rule-strong:#333c35;
+  --accent:#57c39b;
+  --accent-soft:#152e25;
+  --accent-ink:#7ad3b1;
+
+  --s1:#3987e5;
+  --s2:#d95926;
+  --s3:#199e70;
+  --pos:#3987e5;
+  --neg:#e66767;
+  --mute-mark:#78847d;
+  --grid:#1f2621;
+  --axis:#333c35;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:0 90px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.wrap{max-width:1060px;margin:0 auto}
+
+/* ---------- masthead ---------- */
+.masthead{padding-block:56px 40px;border-bottom:1px solid var(--rule)}
+.masthead-top{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between;margin-bottom:36px}
+.mark{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink);font-weight:500}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);border:1px solid var(--rule-strong);border-radius:100px;padding:4px 11px}
+h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.3rem, 6vw, 4rem);
+  line-height:1.04;
+  letter-spacing:-.016em;
+  margin:0 0 22px;
+  text-wrap:balance;
+  max-width:16ch;
+}
+.lede{font-size:clamp(1.06rem, 2vw, 1.24rem);line-height:1.55;color:var(--ink-2);max-width:56ch;margin:0}
+.lede strong{color:var(--ink);font-weight:500}
+
+/* ---------- contents strip ---------- */
+.contents{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--rule)}
+.contents a{
+  flex:1 1 200px;
+  min-width:0;
+  padding:18px 0 18px 18px;
+  border-left:1px solid var(--rule);
+  text-decoration:none;
+  color:var(--ink);
+  display:block;
+  transition:background .15s ease;
+}
+.contents a:first-child{padding-left:0;border-left:0}
+.contents a:hover{background:var(--accent-soft)}
+.contents a:hover .c-title{color:var(--accent-ink)}
+.c-num{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-3);display:block;margin-bottom:5px}
+.c-title{font-size:14px;line-height:1.35;font-weight:500;display:block;max-width:26ch;transition:color .15s ease}
+
+/* ---------- brief ---------- */
+.brief{padding-block:64px 0}
+.brief-head{max-width:64ch}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:500;display:block;margin-bottom:16px}
+h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.62rem, 3.6vw, 2.55rem);
+  line-height:1.12;
+  letter-spacing:-.012em;
+  margin:0 0 18px;
+  text-wrap:balance;
+}
+.dek{font-size:clamp(1rem, 1.7vw, 1.1rem);line-height:1.6;color:var(--ink-2);margin:0;max-width:62ch}
+
+/* ---------- stat row ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-block:36px 8px}
+.stat{background:var(--bg);padding:18px 20px 20px;min-width:0}
+.stat .v{font-family:var(--serif);font-size:clamp(1.8rem, 3.4vw, 2.35rem);line-height:1;font-weight:600;letter-spacing:-.02em;display:block;margin-bottom:9px}
+.stat .l{font-size:12.5px;line-height:1.35;color:var(--ink-2);display:block}
+.stat .s{font-size:11.5px;line-height:1.4;color:var(--ink-3);display:block;margin-top:4px}
+
+/* ---------- charts ---------- */
+figure.chart{margin:38px 0 0;padding:0}
+.chart-head{margin-bottom:14px}
+.chart h3{font-family:var(--sans);font-size:14.5px;font-weight:600;line-height:1.4;margin:0 0 4px;letter-spacing:-.005em}
+.chart-sub{font-size:12.5px;line-height:1.45;color:var(--ink-3);margin:0;max-width:70ch}
+.chart-body{position:relative;width:100%}
+.chart-body svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-table{overflow-x:auto;margin-top:6px}
+
+.tip{
+  position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--rule-strong);
+  border-radius:7px;padding:7px 10px;font-size:12px;line-height:1.45;color:var(--ink);
+  box-shadow:0 6px 22px rgba(10,20,14,.14);z-index:6;white-space:nowrap;max-width:min(260px,80vw);
+}
+.tip .tk{color:var(--ink-3)}
+.tip b{font-weight:600;font-variant-numeric:tabular-nums}
+
+/* svg text roles */
+.tick{fill:var(--ink-3);font-family:var(--sans);font-size:11px;font-variant-numeric:tabular-nums}
+.rowlab{fill:var(--ink-2);font-family:var(--sans);font-size:12px}
+.dlabel{fill:var(--ink);font-family:var(--sans);font-size:11px;font-variant-numeric:tabular-nums;font-weight:500}
+.axlab{fill:var(--ink-3);font-family:var(--sans);font-size:10.5px;letter-spacing:.03em}
+.annot{fill:var(--ink-2);font-family:var(--sans);font-size:11px}
+.annot-b{fill:var(--ink);font-family:var(--sans);font-size:11px;font-weight:600}
+.g-grid{stroke:var(--grid);stroke-width:1}
+.g-axis{stroke:var(--axis);stroke-width:1}
+.g-ref{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:none}
+
+/* legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 12px;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);line-height:1.3}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+.sw.line{height:3px;border-radius:2px;width:14px}
+.sw.dot{width:9px;height:9px;border-radius:50%}
+
+/* table toggle + tables */
+.tbl-btn{
+  margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);background:none;border:1px solid var(--rule-strong);border-radius:100px;
+  padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s;
+}
+.tbl-btn:hover{color:var(--accent-ink);border-color:var(--accent)}
+.tbl-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+table.dt{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+table.dt caption{text-align:left;font-size:12px;color:var(--ink-3);padding-bottom:8px}
+table.dt th{text-align:left;font-weight:500;color:var(--ink-3);font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--rule-strong);padding:5px 14px 6px 0;white-space:nowrap}
+table.dt td{padding:5px 14px 5px 0;border-bottom:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+table.dt td:first-child{color:var(--ink)}
+table.dt td.n,table.dt th.n{text-align:right}
+
+/* ---------- notes ---------- */
+.notes{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;margin-block:40px 0;padding-top:30px;border-top:1px solid var(--rule)}
+.notes h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin:0 0 14px}
+.findings ul{list-style:none;margin:0;padding:0;display:grid;gap:15px}
+.findings li{position:relative;padding-left:18px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.findings li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:1px;background:var(--accent)}
+.findings li strong{color:var(--ink);font-weight:600}
+.method p{font-size:12.5px;line-height:1.65;color:var(--ink-3);margin:0}
+.method p+p{margin-top:10px}
+
+/* ---------- services ---------- */
+.services{margin-top:96px;padding-top:48px;border-top:1px solid var(--rule-strong)}
+.services-head{max-width:60ch;margin-bottom:40px}
+.services h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:14px}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px}
+.svc h3{font-family:var(--serif);font-size:1.16rem;font-weight:600;margin:0 0 9px;letter-spacing:-.005em}
+.svc p{font-size:14px;line-height:1.6;color:var(--ink-2);margin:0}
+
+/* ---------- footer ---------- */
+footer{margin-top:88px;padding-top:30px;border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:baseline}
+footer p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-3)}
+footer .sig{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+
+@media (max-width:720px){
+  .masthead{padding-block:40px 32px}
+  .brief{padding-block:48px 0}
+  .notes{grid-template-columns:1fr;gap:32px}
+  .contents a{flex-basis:100%;border-left:0;border-top:1px solid var(--rule);padding-left:0;padding-block:13px}
+  .contents a:first-child{border-top:0}
+  .services{margin-top:64px}
+  h1{max-width:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <span class="mark">Research &amp; data</span>
+      <span class="tag">Work sample</span>
+    </div>
+    <h1>Three briefs, one method.</h1>
+    <p class="lede">Every figure here comes from a public source, is computed in code you can read, and ends in <strong>one sentence a non-specialist can act on</strong>. That is the service.</p>
+  </header>
+
+  <nav class="contents" aria-label="Briefs">
+    <a href="#energy">
+      <span class="c-num">01 — Energy systems</span>
+      <span class="c-title">The 50% club keeps swapping members</span>
+    </a>
+    <a href="#prices">
+      <span class="c-num">02 — Prices</span>
+      <span class="c-title">Groceries kept up with wages. Restaurants didn't.</span>
+    </a>
+    <a href="#solar">
+      <span class="c-num">03 — Technology cost</span>
+      <span class="c-title">Solar's price curve held for 25 years</span>
+    </a>
+  </nav>
+
+  <!-- ============ 01 ENERGY ============ -->
+  <section class="brief" id="energy">
+    <div class="brief-head">
+      <span class="eyebrow">01 — Energy systems</span>
+      <h2>The 50% club keeps swapping members</h2>
+      <p class="dek">Twenty-six national grids changed sides on majority-renewable electricity between 2000 and 2025. Sixteen joined. Ten left. The two groups barely resemble each other.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">26</span>
+        <span class="l">grids changed status</span>
+        <span class="s">16 joined, 10 left, across 156 countries</span>
+      </div>
+      <div class="stat">
+        <span class="v">0</span>
+        <span class="l">wind or solar on the leavers</span>
+        <span class="s">all ten were hydro-only in 2000</span>
+      </div>
+      <div class="stat">
+        <span class="v">5 of 7</span>
+        <span class="l">entrants since 2020</span>
+        <span class="s">arrived with wind or solar already built</span>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Every grid that changed side, 2000 against its latest year</h3>
+        <p class="chart-sub">Share of electricity generated from renewables. Open dot marks 2000; filled dot marks 2024 or 2025, whichever the country reports.</p>
+      </div>
+      <ul class="legend" id="c1-legend"></ul>
+      <div class="chart-body" id="c1"></div>
+      <div class="chart-table" id="c1-table" hidden></div>
+      <button class="tbl-btn" data-target="c1" aria-expanded="false">Table</button>
+    </figure>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>What tipped each new member over the line</h3>
+        <p class="chart-sub">Entrants grouped by the decade they crossed 50%, split by the renewable source already generating that year.</p>
+      </div>
+      <ul class="legend" id="c2-legend"></ul>
+      <div class="chart-body" id="c2"></div>
+      <div class="chart-table" id="c2-table" hidden></div>
+      <button class="tbl-btn" data-target="c2" aria-expanded="false">Table</button>
+    </figure>
+
+    <div class="notes">
+      <div class="findings">
+        <h3>What the data shows</h3>
+        <ul>
+          <li><strong>The net number barely moved.</strong> 51 grids were majority-renewable in 2000, 57 by 2025 — a gain of six that hides twenty-six changes of side.</li>
+          <li><strong>The leavers were hydro-only.</strong> Not one of the ten had a megawatt of wind or solar in 2000. Hydro output moves with rainfall and dam availability; installed wind and solar do not.</li>
+          <li><strong>The joiners changed kind.</strong> None of the three grids that joined in the 2000s arrived on wind and solar. Five of the seven that joined since 2020 did.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <h3>Method &amp; sources</h3>
+        <p>Ember electricity data via Our World in Data; World Bank populations, used only to drop territories under one million people. Sample: 156 countries with a usable annual series from 2000.</p>
+        <p>“Majority renewable” means renewables supplied at least 50% of electricity generation in a given year. Classification of what tipped a country over uses its wind and solar share in the crossing year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 PRICES ============ -->
+  <section class="brief" id="prices">
+    <div class="brief-head">
+      <span class="eyebrow">02 — Prices</span>
+      <h2>Groceries kept up with wages. Restaurants didn't.</h2>
+      <p class="dek">Food at home is up 31.9% since January 2020. Average hourly earnings are up 33.0%. Measured against pay, the grocery basket is roughly where it started. The gap opened at the restaurant.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">+31.9%</span>
+        <span class="l">food at home</span>
+        <span class="s">January 2020 to September 2026</span>
+      </div>
+      <div class="stat">
+        <span class="v">+33.0%</span>
+        <span class="l">average hourly earnings</span>
+        <span class="s">same window</span>
+      </div>
+      <div class="stat">
+        <span class="v">+4.9 pts</span>
+        <span class="l">food away from home, vs wages</span>
+        <span class="s">the only category meaningfully ahead of pay</span>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Three paths since January 2020, indexed to 100</h3>
+        <p class="chart-sub">All three on one scale, so the crossing points are real rather than an artefact of separate axes.</p>
+      </div>
+      <ul class="legend" id="c3-legend"></ul>
+      <div class="chart-body" id="c3"></div>
+      <div class="chart-table" id="c3-table" hidden></div>
+      <button class="tbl-btn" data-target="c3" aria-expanded="false">Table</button>
+    </figure>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Cumulative price change by grocery category</h3>
+        <p class="chart-sub">January 2020 to September 2026. The vertical rule marks growth in average hourly earnings over the same period.</p>
+      </div>
+      <div class="chart-body" id="c4"></div>
+      <div class="chart-table" id="c4-table" hidden></div>
+      <button class="tbl-btn" data-target="c4" aria-expanded="false">Table</button>
+    </figure>
+
+    <div class="notes">
+      <div class="findings">
+        <h3>What the data shows</h3>
+        <ul>
+          <li><strong>The spread inside one basket is wider than the headline.</strong> Fruit and vegetables rose 40.1%; “other food at home” rose 19.0%. That is a 21-point gap between aisles.</li>
+          <li><strong>Nothing has come back down.</strong> Meat, poultry, fish and eggs sit 1.0% below its peak. Every other category is at its highest level since 2020.</li>
+          <li><strong>Eating out breaks the pattern.</strong> Food away from home is up 37.9%, nearly five points ahead of pay, while groceries finished just behind it.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <h3>Method &amp; sources</h3>
+        <p>BLS Consumer Price Index (CPI-U, seasonally adjusted) and CES average hourly earnings, both via FRED. January 2020 to September 2026, the latest month available.</p>
+        <p>Wages are an economy-wide average, not a household measure. Regional prices, basket composition and median income all differ from these national series, and a household that buys more fresh produce than the average basket has felt a different number.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 SOLAR ============ -->
+  <section class="brief" id="solar">
+    <div class="brief-head">
+      <span class="eyebrow">03 — Technology cost</span>
+      <h2>Solar's price curve held for 25 years, with one four-year detour</h2>
+      <p class="dek">Each doubling of installed solar capacity has come with a 27.7% fall in module price. One slope and one intercept explain 96% of the variation. The exception is 2008–11, when a polysilicon shortage pushed prices as much as 72% above the curve.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="v">27.7%</span>
+        <span class="l">price fall per doubling</span>
+        <span class="s">fitted on 25 annual observations, 2000–2024</span>
+      </div>
+      <div class="stat">
+        <span class="v">0.96</span>
+        <span class="l">R² of the fit</span>
+        <span class="s">one slope, one intercept, no other inputs</span>
+      </div>
+      <div class="stat">
+        <span class="v">96%</span>
+        <span class="l">fall in module price</span>
+        <span class="s">$6.50/W in 2000 to $0.27/W in 2024</span>
+      </div>
+    </div>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Module price against cumulative installed capacity</h3>
+        <p class="chart-sub">Both axes logarithmic, so a straight line means a constant percentage fall per doubling. The line is an ordinary least-squares fit.</p>
+      </div>
+      <div class="chart-body" id="c5"></div>
+      <div class="chart-table" id="c5-table" hidden></div>
+      <button class="tbl-btn" data-target="c5" aria-expanded="false">Table</button>
+    </figure>
+
+    <figure class="chart">
+      <div class="chart-head">
+        <h3>Levelised cost of electricity by technology, 2010–2025</h3>
+        <p class="chart-sub">Solar in colour; the other technologies in grey for context. Lower is cheaper.</p>
+      </div>
+      <ul class="legend" id="c6-legend"></ul>
+      <div class="chart-body" id="c6"></div>
+      <div class="chart-table" id="c6-table" hidden></div>
+      <button class="tbl-btn" data-target="c6" aria-expanded="false">Table</button>
+    </figure>
+
+    <div class="notes">
+      <div class="findings">
+        <h3>What the data shows</h3>
+        <ul>
+          <li><strong>The curve is a planning tool, not a law.</strong> Prices in 2008–11 sat 45–72% above the fitted line, then reverted within three years.</li>
+          <li><strong>Solar is the outlier among technologies.</strong> Its levelised cost fell 89% between 2010 and 2025. Onshore wind fell 71%. Hydropower rose 41% over the same period.</li>
+          <li><strong>The rate is a forecast you can use.</strong> At 27.7% per doubling, another doubling of installed capacity implies roughly a quarter off the module price.</li>
+        </ul>
+      </div>
+      <div class="method">
+        <h3>Method &amp; sources</h3>
+        <p>Solar module cost, installed capacity and levelised cost of energy from IRENA and Lazard via Our World in Data. The experience curve is fitted by ordinary least squares on log price against log cumulative installed capacity.</p>
+        <p>Module price is one component of system cost; installation, land and financing are excluded and have fallen more slowly. The 2008–11 residual is a known polysilicon supply shock, not a fitting error.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services">
+    <div class="services-head">
+      <span class="eyebrow">How I work</span>
+      <h2>Source, analyse, explain</h2>
+      <p class="dek">The three briefs above are one method applied three times. It is the same method I would apply to your question.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <h3>Source</h3>
+        <p>Find the dataset that can actually answer the question, then check it: coverage, revisions, units, and what it leaves out. Most wrong answers start with the wrong table.</p>
+      </div>
+      <div class="svc">
+        <h3>Analyse</h3>
+        <p>Cohort splits, decompositions, real-terms adjustments, log-log fits. The method is stated plainly next to the result, and the assumption that matters is named.</p>
+      </div>
+      <div class="svc">
+        <h3>Explain</h3>
+        <p>One sentence, one chart, and the caveat that changes the reading. Delivered with the code, so anyone on your side can re-run it and check my work.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Work sample. Sources and code for every figure are included.<br>Prepared by <span style="color:var(--ink-2)">[your name]</span> · <span style="color:var(--ink-2)">[your email]</span></p>
+    <p class="sig">Available for research &amp; data work</p>
+  </footer>
+
+</div>
+
+<script>
+const DATA = {"s1":{"meta":{"source":"Ember via Our World in Data (electricity shares); World Bank (population filter)","window":"2000-2025","threshold":50.0,"min_population":1000000},"summary":{"sample":156,"majority_first":51,"majority_last":57,"entrants":16,"exits":10,"entrants_by_kind":{"wind & solar":7,"hydro":6,"mixed":3},"entrants_by_decade":{"2000":3,"2010":6,"2020":7}},"entrants":[{"country":"Chile","code":"CHL","cross_year":2001.0,"kind":"hydro","renew_first":49.8,"renew_last":66.4,"vres_last":38.1},{"country":"Kenya","code":"KEN","cross_year":2001.0,"kind":"hydro","renew_first":40.4,"renew_last":90.0,"vres_last":21.0},{"country":"Zimbabwe","code":"ZWE","cross_year":2003.0,"kind":"hydro","renew_first":45.6,"renew_last":57.1,"vres_last":0.4},{"country":"Sierra Leone","code":"SLE","cross_year":2010.0,"kind":"hydro","renew_first":11.1,"renew_last":95.2,"vres_last":9.5},{"country":"Portugal","code":"PRT","cross_year":2010.0,"kind":"mixed","renew_first":29.8,"renew_last":81.0,"vres_last":44.1},{"country":"Sri Lanka","code":"LKA","cross_year":2010.0,"kind":"hydro","renew_first":47.3,"renew_last":61.6,"vres_last":21.9},{"country":"Nicaragua","code":"NIC","cross_year":2013.0,"kind":"mixed","renew_first":21.5,"renew_last":62.4,"vres_last":13.1},{"country":"Denmark","code":"DNK","cross_year":2014.0,"kind":"wind & solar","renew_first":15.5,"renew_last":91.2,"vres_last":71.1},{"country":"Lithuania","code":"LTU","cross_year":2016.0,"kind":"wind & solar","renew_first":3.1,"renew_last":77.6,"vres_last":63.7},{"country":"Finland","code":"FIN","cross_year":2020.0,"kind":"mixed","renew_first":33.4,"renew_last":56.5,"vres_last":28.6},{"country":"Germany","code":"DEU","cross_year":2023.0,"kind":"wind & solar","renew_first":6.2,"renew_last":59.1,"vres_last":45.1},{"country":"Liberia","code":"LBR","cross_year":2023.0,"kind":"hydro","renew_first":0.0,"renew_last":54.4,"vres_last":1.8},{"country":"Spain","code":"ESP","cross_year":2023.0,"kind":"wind & solar","renew_first":15.6,"renew_last":55.9,"vres_last":42.3},{"country":"Estonia","code":"EST","cross_year":2024.0,"kind":"wind & solar","renew_first":0.1,"renew_last":59.6,"vres_last":37.3},{"country":"Netherlands","code":"NLD","cross_year":2024.0,"kind":"wind & solar","renew_first":3.4,"renew_last":51.2,"vres_last":46.1},{"country":"United Kingdom","code":"GBR","cross_year":2024.0,"kind":"wind & solar","renew_first":2.6,"renew_last":52.0,"vres_last":36.0}],"exits":[{"country":"Congo","code":"COG","renew_first":100.0,"renew_last":20.9,"delta":-79.1},{"country":"Ghana","code":"GHA","renew_first":91.4,"renew_last":36.2,"delta":-55.2},{"country":"Tanzania","code":"TZA","renew_first":86.4,"renew_last":32.9,"delta":-53.50000000000001},{"country":"Haiti","code":"HTI","renew_first":51.9,"renew_last":18.6,"delta":-33.3},{"country":"Gabon","code":"GAB","renew_first":61.8,"renew_last":35.4,"delta":-26.4},{"country":"Togo","code":"TGO","renew_first":55.6,"renew_last":29.6,"delta":-26.0},{"country":"Madagascar","code":"MDG","renew_first":64.0,"renew_last":42.4,"delta":-21.6},{"country":"Bolivia","code":"BOL","renew_first":51.5,"renew_last":36.1,"delta":-15.399999999999999},{"country":"Rwanda","code":"RWA","renew_first":62.5,"renew_last":49.6,"delta":-12.899999999999999},{"country":"Vietnam","code":"VNM","renew_first":54.8,"renew_last":45.4,"delta":-9.399999999999999}],"members_last":[{"country":"Albania","code":"ALB","renew_last":100.0,"vres_last":4.1,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Democratic Republic of Congo","code":"COD","renew_last":100.0,"vres_last":15.8,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Ethiopia","code":"ETH","renew_last":100.0,"vres_last":3.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Costa Rica","code":"CRI","renew_last":100.0,"vres_last":12.8,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Nepal","code":"NPL","renew_last":100.0,"vres_last":1.2,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Paraguay","code":"PRY","renew_last":100.0,"vres_last":0.0,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Norway","code":"NOR","renew_last":99.0,"vres_last":8.8,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Uruguay","code":"URY","renew_last":97.8,"vres_last":45.7,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Namibia","code":"NAM","renew_last":97.6,"vres_last":36.6,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Uganda","code":"UGA","renew_last":97.1,"vres_last":2.9,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Eswatini","code":"SWZ","renew_last":96.7,"vres_last":4.9,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Malawi","code":"MWI","renew_last":95.6,"vres_last":0.5,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Sierra Leone","code":"SLE","renew_last":95.2,"vres_last":9.5,"kind":"hydro","cross_year":2010.0,"already":false},{"country":"Tajikistan","code":"TJK","renew_last":94.4,"vres_last":0.0,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Denmark","code":"DNK","renew_last":91.2,"vres_last":71.1,"kind":"wind & solar","cross_year":2014.0,"already":false},{"country":"Venezuela","code":"VEN","renew_last":91.1,"vres_last":0.0,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Kenya","code":"KEN","renew_last":90.0,"vres_last":21.0,"kind":"hydro","cross_year":2001.0,"already":false},{"country":"New Zealand","code":"NZL","renew_last":88.5,"vres_last":10.6,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Zambia","code":"ZMB","renew_last":87.5,"vres_last":0.9,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Afghanistan","code":"AFG","renew_last":86.9,"vres_last":11.1,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Brazil","code":"BRA","renew_last":86.6,"vres_last":27.5,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"El Salvador","code":"SLV","renew_last":86.5,"vres_last":23.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Kyrgyzstan","code":"KGZ","renew_last":84.7,"vres_last":0.0,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Austria","code":"AUT","renew_last":83.6,"vres_last":25.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Mozambique","code":"MOZ","renew_last":83.4,"vres_last":0.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Portugal","code":"PRT","renew_last":81.0,"vres_last":44.1,"kind":"mixed","cross_year":2010.0,"already":false},{"country":"Sudan","code":"SDN","renew_last":79.7,"vres_last":1.1,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Georgia","code":"GEO","renew_last":79.6,"vres_last":0.8,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Ecuador","code":"ECU","renew_last":79.4,"vres_last":0.6,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Lithuania","code":"LTU","renew_last":77.6,"vres_last":63.7,"kind":"wind & solar","cross_year":2016.0,"already":false},{"country":"Colombia","code":"COL","renew_last":77.0,"vres_last":5.3,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Laos","code":"LAO","renew_last":76.7,"vres_last":0.2,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Croatia","code":"HRV","renew_last":76.3,"vres_last":30.2,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Burundi","code":"BDI","renew_last":75.5,"vres_last":0.0,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Guinea","code":"GIN","renew_last":75.2,"vres_last":0.7,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Angola","code":"AGO","renew_last":73.7,"vres_last":2.8,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Cameroon","code":"CMR","renew_last":73.1,"vres_last":0.6,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Latvia","code":"LVA","renew_last":73.0,"vres_last":16.6,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Sweden","code":"SWE","renew_last":71.2,"vres_last":25.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Guatemala","code":"GTM","renew_last":68.3,"vres_last":4.1,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Panama","code":"PAN","renew_last":68.0,"vres_last":14.5,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Switzerland","code":"CHE","renew_last":67.8,"vres_last":12.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Chile","code":"CHL","renew_last":66.4,"vres_last":38.1,"kind":"hydro","cross_year":2001.0,"already":false},{"country":"Canada","code":"CAN","renew_last":63.9,"vres_last":9.4,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Peru","code":"PER","renew_last":63.6,"vres_last":6.5,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"North Korea","code":"PRK","renew_last":63.4,"vres_last":0.6,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Nicaragua","code":"NIC","renew_last":62.4,"vres_last":13.1,"kind":"mixed","cross_year":2013.0,"already":false},{"country":"Sri Lanka","code":"LKA","renew_last":61.6,"vres_last":21.9,"kind":"hydro","cross_year":2010.0,"already":false},{"country":"Estonia","code":"EST","renew_last":59.6,"vres_last":37.3,"kind":"wind & solar","cross_year":2024.0,"already":false},{"country":"Germany","code":"DEU","renew_last":59.1,"vres_last":45.1,"kind":"wind & solar","cross_year":2023.0,"already":false},{"country":"Zimbabwe","code":"ZWE","renew_last":57.1,"vres_last":0.4,"kind":"hydro","cross_year":2003.0,"already":false},{"country":"Finland","code":"FIN","renew_last":56.5,"vres_last":28.6,"kind":"mixed","cross_year":2020.0,"already":false},{"country":"Spain","code":"ESP","renew_last":55.9,"vres_last":42.3,"kind":"wind & solar","cross_year":2023.0,"already":false},{"country":"Honduras","code":"HND","renew_last":55.4,"vres_last":15.5,"kind":"hydro","cross_year":2000.0,"already":true},{"country":"Liberia","code":"LBR","renew_last":54.4,"vres_last":1.8,"kind":"hydro","cross_year":2023.0,"already":false},{"country":"United Kingdom","code":"GBR","renew_last":52.0,"vres_last":36.0,"kind":"wind & solar","cross_year":2024.0,"already":false},{"country":"Netherlands","code":"NLD","renew_last":51.2,"vres_last":46.1,"kind":"wind & solar","cross_year":2024.0,"already":false}]},"s2":{"meta":{"source":"BLS CPI-U (seasonally adjusted) and CES average hourly earnings, via FRED","window":"2020-01-01 to 2026-09-01"},"wage_growth_pct":33.0,"categories":[{"series":"CUSR0000SAF114","label":"Fruit & vegetables","base":171.6,"now":240.4,"chg_pct":40.1,"peak_chg_pct":40.1,"from_peak_pct":0.0},{"series":"CUSR0000SEFV","label":"Food away from home","base":289.1,"now":398.8,"chg_pct":37.9,"peak_chg_pct":37.9,"from_peak_pct":0.0},{"series":"CUSR0000SAF112","label":"Meat, poultry, fish & eggs","base":254.6,"now":348.3,"chg_pct":36.8,"peak_chg_pct":38.2,"from_peak_pct":-1.0},{"series":"CUSR0000SAF111","label":"Cereals & bakery","base":276.6,"now":369.1,"chg_pct":33.5,"peak_chg_pct":33.5,"from_peak_pct":0.0},{"series":"CUSR0000SAF115","label":"Nonalcoholic beverages","base":211.8,"now":282.4,"chg_pct":33.3,"peak_chg_pct":33.6,"from_peak_pct":-0.2},{"series":"CUSR0000SAF11","label":"Food at home","base":243.5,"now":321.1,"chg_pct":31.9,"peak_chg_pct":32.0,"from_peak_pct":-0.1},{"series":"CPIAUCSL","label":"All items (CPI)","base":259.1,"now":336.3,"chg_pct":29.8,"peak_chg_pct":29.8,"from_peak_pct":0.0},{"series":"CUSR0000SAF113","label":"Dairy","base":300.2,"now":370.9,"chg_pct":23.6,"peak_chg_pct":24.0,"from_peak_pct":-0.3},{"series":"CUSR0000SAF116","label":"Other food at home","base":253.6,"now":301.7,"chg_pct":19.0,"peak_chg_pct":19.0,"from_peak_pct":0.0}],"indexed":{"Food at home":[{"d":"2020-01","v":100.0},{"d":"2020-02","v":100.28},{"d":"2020-03","v":100.62},{"d":"2020-04","v":103.1},{"d":"2020-05","v":103.99},{"d":"2020-06","v":104.58},{"d":"2020-07","v":103.49},{"d":"2020-08","v":103.55},{"d":"2020-09","v":103.14},{"d":"2020-10","v":103.34},{"d":"2020-11","v":103.23},{"d":"2020-12","v":103.71},{"d":"2021-01","v":103.71},{"d":"2021-02","v":103.82},{"d":"2021-03","v":103.87},{"d":"2021-04","v":104.36},{"d":"2021-05","v":104.74},{"d":"2021-06","v":105.56},{"d":"2021-07","v":106.15},{"d":"2021-08","v":106.61},{"d":"2021-09","v":107.78},{"d":"2021-10","v":108.86},{"d":"2021-11","v":109.84},{"d":"2021-12","v":110.46},{"d":"2022-01","v":111.36},{"d":"2022-02","v":112.82},{"d":"2022-03","v":114.3},{"d":"2022-04","v":115.64},{"d":"2022-05","v":117.25},{"d":"2022-06","v":118.5},{"d":"2022-07","v":120.1},{"d":"2022-08","v":121.1},{"d":"2022-09","v":121.72},{"d":"2022-10","v":122.36},{"d":"2022-11","v":122.97},{"d":"2022-12","v":123.43},{"d":"2023-01","v":123.89},{"d":"2023-02","v":124.2},{"d":"2023-03","v":123.8},{"d":"2023-04","v":123.94},{"d":"2023-05","v":124.09},{"d":"2023-06","v":124.04},{"d":"2023-07","v":124.42},{"d":"2023-08","v":124.69},{"d":"2023-09","v":124.61},{"d":"2023-10","v":124.99},{"d":"2023-11","v":124.98},{"d":"2023-12","v":125.05},{"d":"2024-01","v":125.33},{"d":"2024-02","v":125.43},{"d":"2024-03","v":125.26},{"d":"2024-04","v":125.4},{"d":"2024-05","v":125.42},{"d":"2024-06","v":125.49},{"d":"2024-07","v":125.78},{"d":"2024-08","v":125.83},{"d":"2024-09","v":126.18},{"d":"2024-10","v":126.43},{"d":"2024-11","v":126.93},{"d":"2024-12","v":127.21},{"d":"2025-01","v":127.64},{"d":"2025-02","v":127.7},{"d":"2025-03","v":128.19},{"d":"2025-04","v":127.9},{"d":"2025-05","v":128.25},{"d":"2025-06","v":128.53},{"d":"2025-07","v":128.55},{"d":"2025-08","v":129.21},{"d":"2025-09","v":129.58},{"d":"2025-11","v":129.36},{"d":"2025-12","v":130.17},{"d":"2026-01","v":130.42},{"d":"2026-02","v":130.99},{"d":"2026-03","v":130.78},{"d":"2026-04","v":131.67},{"d":"2026-05","v":131.75},{"d":"2026-06","v":132.0},{"d":"2026-07","v":131.91},{"d":"2026-08","v":131.96},{"d":"2026-09","v":131.87}],"Food away from home":[{"d":"2020-01","v":100.0},{"d":"2020-02","v":100.22},{"d":"2020-03","v":100.37},{"d":"2020-04","v":100.52},{"d":"2020-05","v":100.89},{"d":"2020-06","v":101.41},{"d":"2020-07","v":101.89},{"d":"2020-08","v":102.18},{"d":"2020-09","v":102.75},{"d":"2020-10","v":103.03},{"d":"2020-11","v":103.15},{"d":"2020-12","v":103.54},{"d":"2021-01","v":103.89},{"d":"2021-02","v":103.94},{"d":"2021-03","v":104.07},{"d":"2021-04","v":104.39},{"d":"2021-05","v":104.96},{"d":"2021-06","v":105.71},{"d":"2021-07","v":106.53},{"d":"2021-08","v":106.99},{"d":"2021-09","v":107.56},{"d":"2021-10","v":108.46},{"d":"2021-11","v":109.11},{"d":"2021-12","v":109.77},{"d":"2022-01","v":110.49},{"d":"2022-02","v":110.98},{"d":"2022-03","v":111.26},{"d":"2022-04","v":111.91},{"d":"2022-05","v":112.73},{"d":"2022-06","v":113.8},{"d":"2022-07","v":114.6},{"d":"2022-08","v":115.59},{"d":"2022-09","v":116.68},{"d":"2022-10","v":117.78},{"d":"2022-11","v":118.38},{"d":"2022-12","v":118.82},{"d":"2023-01","v":119.55},{"d":"2023-02","v":120.31},{"d":"2023-03","v":121.03},{"d":"2023-04","v":121.48},{"d":"2023-05","v":122.05},{"d":"2023-06","v":122.52},{"d":"2023-07","v":122.73},{"d":"2023-08","v":123.15},{"d":"2023-09","v":123.64},{"d":"2023-10","v":124.1},{"d":"2023-11","v":124.64},{"d":"2023-12","v":125.05},{"d":"2024-01","v":125.63},{"d":"2024-02","v":125.75},{"d":"2024-03","v":126.08},{"d":"2024-04","v":126.52},{"d":"2024-05","v":126.96},{"d":"2024-06","v":127.49},{"d":"2024-07","v":127.75},{"d":"2024-08","v":128.09},{"d":"2024-09","v":128.52},{"d":"2024-10","v":128.83},{"d":"2024-11","v":129.19},{"d":"2024-12","v":129.57},{"d":"2025-01","v":129.88},{"d":"2025-02","v":130.38},{"d":"2025-03","v":130.86},{"d":"2025-04","v":131.44},{"d":"2025-05","v":131.85},{"d":"2025-06","v":132.38},{"d":"2025-07","v":132.74},{"d":"2025-08","v":133.12},{"d":"2025-09","v":133.31},{"d":"2025-11","v":133.92},{"d":"2025-12","v":134.85},{"d":"2026-01","v":135.05},{"d":"2026-02","v":135.47},{"d":"2026-03","v":135.8},{"d":"2026-04","v":136.11},{"d":"2026-05","v":136.52},{"d":"2026-06","v":136.83},{"d":"2026-07","v":137.26},{"d":"2026-08","v":137.61},{"d":"2026-09","v":137.92}],"All items":[{"d":"2020-01","v":100.0},{"d":"2020-02","v":100.05},{"d":"2020-03","v":99.59},{"d":"2020-04","v":98.81},{"d":"2020-05","v":98.72},{"d":"2020-06","v":99.2},{"d":"2020-07","v":99.7},{"d":"2020-08","v":100.07},{"d":"2020-09","v":100.34},{"d":"2020-10","v":100.46},{"d":"2020-11","v":100.69},{"d":"2020-12","v":101.13},{"d":"2021-01","v":101.37},{"d":"2021-02","v":101.72},{"d":"2021-03","v":102.25},{"d":"2021-04","v":102.89},{"d":"2021-05","v":103.57},{"d":"2021-06","v":104.45},{"d":"2021-07","v":104.93},{"d":"2021-08","v":105.23},{"d":"2021-09","v":105.7},{"d":"2021-10","v":106.72},{"d":"2021-11","v":107.64},{"d":"2021-12","v":108.38},{"d":"2022-01","v":109.04},{"d":"2022-02","v":109.79},{"d":"2022-03","v":111.02},{"d":"2022-04","v":111.36},{"d":"2022-05","v":112.42},{"d":"2022-06","v":113.83},{"d":"2022-07","v":113.81},{"d":"2022-08","v":113.88},{"d":"2022-09","v":114.36},{"d":"2022-10","v":115.0},{"d":"2022-11","v":115.3},{"d":"2022-12","v":115.32},{"d":"2023-01","v":115.94},{"d":"2023-02","v":116.33},{"d":"2023-03","v":116.48},{"d":"2023-04","v":116.87},{"d":"2023-05","v":117.06},{"d":"2023-06","v":117.32},{"d":"2023-07","v":117.55},{"d":"2023-08","v":118.12},{"d":"2023-09","v":118.58},{"d":"2023-10","v":118.74},{"d":"2023-11","v":118.92},{"d":"2023-12","v":119.15},{"d":"2024-01","v":119.52},{"d":"2024-02","v":120.01},{"d":"2024-03","v":120.54},{"d":"2024-04","v":120.8},{"d":"2024-05","v":120.86},{"d":"2024-06","v":120.81},{"d":"2024-07","v":121.01},{"d":"2024-08","v":121.2},{"d":"2024-09","v":121.46},{"d":"2024-10","v":121.81},{"d":"2024-11","v":122.15},{"d":"2024-12","v":122.57},{"d":"2025-01","v":123.09},{"d":"2025-02","v":123.37},{"d":"2025-03","v":123.41},{"d":"2025-04","v":123.61},{"d":"2025-05","v":123.73},{"d":"2025-06","v":124.05},{"d":"2025-07","v":124.33},{"d":"2025-08","v":124.76},{"d":"2025-09","v":125.13},{"d":"2025-11","v":125.45},{"d":"2025-12","v":125.82},{"d":"2026-01","v":126.03},{"d":"2026-02","v":126.37},{"d":"2026-03","v":127.46},{"d":"2026-04","v":128.28},{"d":"2026-05","v":128.89},{"d":"2026-06","v":128.34},{"d":"2026-07","v":128.44},{"d":"2026-08","v":128.94},{"d":"2026-09","v":129.78}],"Average hourly earnings":[{"d":"2020-01","v":100.0},{"d":"2020-02","v":100.39},{"d":"2020-03","v":101.06},{"d":"2020-04","v":105.66},{"d":"2020-05","v":104.54},{"d":"2020-06","v":103.34},{"d":"2020-07","v":103.38},{"d":"2020-08","v":103.73},{"d":"2020-09","v":103.8},{"d":"2020-10","v":103.9},{"d":"2020-11","v":104.26},{"d":"2020-12","v":105.21},{"d":"2021-01","v":105.28},{"d":"2021-02","v":105.7},{"d":"2021-03","v":105.63},{"d":"2021-04","v":106.3},{"d":"2021-05","v":106.96},{"d":"2021-06","v":107.42},{"d":"2021-07","v":107.84},{"d":"2021-08","v":108.27},{"d":"2021-09","v":108.97},{"d":"2021-10","v":109.53},{"d":"2021-11","v":109.85},{"d":"2021-12","v":110.41},{"d":"2022-01","v":111.15},{"d":"2022-02","v":111.29},{"d":"2022-03","v":111.85},{"d":"2022-04","v":112.42},{"d":"2022-05","v":112.91},{"d":"2022-06","v":113.23},{"d":"2022-07","v":113.75},{"d":"2022-08","v":114.1},{"d":"2022-09","v":114.56},{"d":"2022-10","v":115.02},{"d":"2022-11","v":115.44},{"d":"2022-12","v":115.86},{"d":"2023-01","v":116.14},{"d":"2023-02","v":116.6},{"d":"2023-03","v":117.02},{"d":"2023-04","v":117.59},{"d":"2023-05","v":117.83},{"d":"2023-06","v":118.5},{"d":"2023-07","v":119.06},{"d":"2023-08","v":119.21},{"d":"2023-09","v":119.63},{"d":"2023-10","v":119.87},{"d":"2023-11","v":120.19},{"d":"2023-12","v":120.61},{"d":"2024-01","v":121.25},{"d":"2024-02","v":121.42},{"d":"2024-03","v":121.88},{"d":"2024-04","v":122.27},{"d":"2024-05","v":122.72},{"d":"2024-06","v":123.14},{"d":"2024-07","v":123.39},{"d":"2024-08","v":123.88},{"d":"2024-09","v":124.31},{"d":"2024-10","v":124.73},{"d":"2024-11","v":125.22},{"d":"2024-12","v":125.54},{"d":"2025-01","v":126.06},{"d":"2025-02","v":126.42},{"d":"2025-03","v":127.01},{"d":"2025-04","v":127.05},{"d":"2025-05","v":127.61},{"d":"2025-06","v":127.89},{"d":"2025-07","v":128.28},{"d":"2025-08","v":128.81},{"d":"2025-09","v":129.09},{"d":"2025-10","v":129.62},{"d":"2025-11","v":130.14},{"d":"2025-12","v":130.21},{"d":"2026-01","v":130.67},{"d":"2026-02","v":131.09},{"d":"2026-03","v":131.38},{"d":"2026-04","v":131.59},{"d":"2026-05","v":131.87},{"d":"2026-06","v":132.22},{"d":"2026-07","v":132.4},{"d":"2026-08","v":132.82},{"d":"2026-09","v":132.99}]}},"s3":{"meta":{"source":"IRENA/Lazard via Our World in Data - solar PV module cost, installed capacity, LCOE"},"fit":{"slope":-0.4681,"intercept":2.2874,"r2":0.9552,"learning_rate_pct":27.7,"n":25},"series":[{"Year":2000,"gw":1.22135,"usd_per_w":6.49589,"fit":8.96933},{"Year":2001,"gw":1.33197,"usd_per_w":6.28445,"fit":8.61263},{"Year":2002,"gw":1.63172,"usd_per_w":5.74725,"fit":7.83199},{"Year":2003,"gw":2.34299,"usd_per_w":5.46381,"fit":6.61187},{"Year":2004,"gw":3.4274,"usd_per_w":4.6955,"fit":5.53347},{"Year":2005,"gw":4.92334,"usd_per_w":4.74567,"fit":4.67056},{"Year":2006,"gw":6.48684,"usd_per_w":5.17275,"fit":4.10492},{"Year":2007,"gw":8.95623,"usd_per_w":5.21106,"fit":3.52963},{"Year":2008,"gw":15.22942,"usd_per_w":4.7492,"fit":2.753},{"Year":2009,"gw":23.54444,"usd_per_w":3.17429,"fit":2.24513},{"Year":2010,"gw":41.48824,"usd_per_w":2.51181,"fit":1.72216},{"Year":2011,"gw":72.6579,"usd_per_w":2.06089,"fit":1.32483},{"Year":2012,"gw":102.81575,"usd_per_w":1.11072,"fit":1.12612},{"Year":2013,"gw":139.68687,"usd_per_w":0.85661,"fit":0.97562},{"Year":2014,"gw":178.84773,"usd_per_w":0.79053,"fit":0.86905},{"Year":2015,"gw":226.5979,"usd_per_w":0.73573,"fit":0.77792},{"Year":2016,"gw":298.50723,"usd_per_w":0.68025,"fit":0.68376},{"Year":2017,"gw":392.3427,"usd_per_w":0.57135,"fit":0.60164},{"Year":2018,"gw":487.84647,"usd_per_w":0.50905,"fit":0.54331},{"Year":2019,"gw":590.1197,"usd_per_w":0.46695,"fit":0.497},{"Year":2020,"gw":721.2222,"usd_per_w":0.36974,"fit":0.45245},{"Year":2021,"gw":865.921,"usd_per_w":0.33192,"fit":0.41534},{"Year":2022,"gw":1057.8683,"usd_per_w":0.3658,"fit":0.37818},{"Year":2023,"gw":1423.988,"usd_per_w":0.32177,"fit":0.32907},{"Year":2024,"gw":1883.1776,"usd_per_w":0.26519,"fit":0.28871}],"lcoe":[{"tech":"Solar photovoltaic","y0":0.4077,"y0_year":2010,"y1":0.0435,"y1_year":2025,"chg_pct":-89.3212},{"tech":"Onshore wind","y0":0.1136,"y0_year":2010,"y1":0.0329,"y1_year":2025,"chg_pct":-71.0011},{"tech":"Offshore wind","y0":0.2084,"y0_year":2010,"y1":0.0779,"y1_year":2025,"chg_pct":-62.6208},{"tech":"Hydropower","y0":0.0437,"y0_year":2010,"y1":0.0617,"y1_year":2025,"chg_pct":41.1583},{"tech":"Bioenergy","y0":0.0885,"y0_year":2010,"y1":0.0855,"y1_year":2025,"chg_pct":-3.3535},{"tech":"Geothermal","y0":0.0578,"y0_year":2010,"y1":0.0887,"y1_year":2025,"chg_pct":53.3367},{"tech":"Concentrated solar power","y0":0.4116,"y0_year":2010,"y1":0.1148,"y1_year":2025,"chg_pct":-72.1002}],"lcoe_series":{"Solar photovoltaic":[{"year":2010,"v":0.4077},{"year":2011,"v":0.3438},{"year":2012,"v":0.2598},{"year":2013,"v":0.2026},{"year":2014,"v":0.1808},{"year":2015,"v":0.1337},{"year":2016,"v":0.1174},{"year":2017,"v":0.0936},{"year":2018,"v":0.0792},{"year":2019,"v":0.0685},{"year":2020,"v":0.0608},{"year":2021,"v":0.0543},{"year":2022,"v":0.0505},{"year":2023,"v":0.0426},{"year":2024,"v":0.043},{"year":2025,"v":0.0435}],"Onshore wind":[{"year":2010,"v":0.1136},{"year":2011,"v":0.1077},{"year":2012,"v":0.0988},{"year":2013,"v":0.099},{"year":2014,"v":0.0876},{"year":2015,"v":0.076},{"year":2016,"v":0.0698},{"year":2017,"v":0.0648},{"year":2018,"v":0.0556},{"year":2019,"v":0.0493},{"year":2020,"v":0.0409},{"year":2021,"v":0.0361},{"year":2022,"v":0.034},{"year":2023,"v":0.0331},{"year":2024,"v":0.0343},{"year":2025,"v":0.0329}],"Offshore wind":[{"year":2010,"v":0.2084},{"year":2011,"v":0.2212},{"year":2012,"v":0.1888},{"year":2013,"v":0.1553},{"year":2014,"v":0.1967},{"year":2015,"v":0.1573},{"year":2016,"v":0.1299},{"year":2017,"v":0.1186},{"year":2018,"v":0.115},{"year":2019,"v":0.0943},{"year":2020,"v":0.0922},{"year":2021,"v":0.0816},{"year":2022,"v":0.0807},{"year":2023,"v":0.0767},{"year":2024,"v":0.0807},{"year":2025,"v":0.0779}],"Hydropower":[{"year":2010,"v":0.0437},{"year":2011,"v":0.0413},{"year":2012,"v":0.0414},{"year":2013,"v":0.047},{"year":2014,"v":0.0373},{"year":2015,"v":0.0414},{"year":2016,"v":0.0544},{"year":2017,"v":0.0561},{"year":2018,"v":0.0463},{"year":2019,"v":0.048},{"year":2020,"v":0.0515},{"year":2021,"v":0.0565},{"year":2022,"v":0.0678},{"year":2023,"v":0.0579},{"year":2024,"v":0.0565},{"year":2025,"v":0.0617}],"Bioenergy":[{"year":2010,"v":0.0885},{"year":2011,"v":0.0854},{"year":2012,"v":0.0714},{"year":2013,"v":0.0946},{"year":2014,"v":0.0917},{"year":2015,"v":0.0831},{"year":2016,"v":0.0794},{"year":2017,"v":0.0787},{"year":2018,"v":0.061},{"year":2019,"v":0.0721},{"year":2020,"v":0.0807},{"year":2021,"v":0.0749},{"year":2022,"v":0.0652},{"year":2023,"v":0.074},{"year":2024,"v":0.0868},{"year":2025,"v":0.0855}],"Geothermal":[{"year":2010,"v":0.0578},{"year":2012,"v":0.0997},{"year":2013,"v":0.0734},{"year":2014,"v":0.0741},{"year":2015,"v":0.0684},{"year":2016,"v":0.0773},{"year":2017,"v":0.0813},{"year":2018,"v":0.0788},{"year":2019,"v":0.0783},{"year":2020,"v":0.0667},{"year":2021,"v":0.0774},{"year":2022,"v":0.0621},{"year":2023,"v":0.0764},{"year":2024,"v":0.0578},{"year":2025,"v":0.0887}],"Concentrated solar power":[{"year":2010,"v":0.4116},{"year":2011,"v":0.3815},{"year":2012,"v":0.3856},{"year":2013,"v":0.2822},{"year":2014,"v":0.2491},{"year":2015,"v":0.2488},{"year":2016,"v":0.2994},{"year":2017,"v":0.2514},{"year":2018,"v":0.155},{"year":2019,"v":0.2134},{"year":2020,"v":0.1211},{"year":2021,"v":0.1293},{"year":2022,"v":0.1269},{"year":2023,"v":0.122},{"year":2024,"v":0.1057},{"year":2025,"v":0.1148}]}}};
+
+/* ---------- tiny svg helpers ---------- */
+const NS = 'http://www.w3.org/2000/svg';
+const S = (t, a = {}) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+const T = (x, y, s, cls, extra = {}) => { const e = S('text', Object.assign({ x, y, class: cls }, extra)); e.textContent = s; return e; };
+const fmt = (v, d = 1) => Number(v).toFixed(d);
+
+function mount(id, draw) {
+  const box = document.getElementById(id);
+  if (!box) return;
+  let w = 0;
+  const render = () => {
+    const nw = box.clientWidth;
+    if (!nw || Math.abs(nw - w) < 2) return;
+    w = nw;
+    box.innerHTML = '';
+    draw(box, nw);
+  };
+  if (window.ResizeObserver) new ResizeObserver(render).observe(box);
+  render();
+  window.addEventListener('resize', render);
+}
+
+function tipFor(box) {
+  const d = document.createElement('div');
+  d.className = 'tip'; d.hidden = true;
+  box.appendChild(d);
+  return {
+    show(x, y, html) {
+      d.innerHTML = html; d.hidden = false;
+      const bw = box.clientWidth, tw = d.offsetWidth, th = d.offsetHeight;
+      let l = x + 14;
+      if (l + tw > bw - 2) l = x - tw - 14;
+      d.style.left = Math.max(0, l) + 'px';
+      d.style.top = Math.max(0, y - th - 12) + 'px';
+    },
+    hide() { d.hidden = true; }
+  };
+}
+
+function legend(id, items) {
+  const ul = document.getElementById(id);
+  if (!ul) return;
+  ul.innerHTML = '';
+  items.forEach(it => {
+    const li = document.createElement('li');
+    const sw = document.createElement('span');
+    sw.className = 'sw ' + (it.shape || '');
+    sw.style.background = it.color;
+    li.appendChild(sw);
+    li.appendChild(document.createTextNode(it.label));
+    ul.appendChild(li);
+  });
+}
+
+function buildTable(id, caption, head, rows) {
+  const host = document.getElementById(id);
+  if (!host) return;
+  const t = document.createElement('table');
+  t.className = 'dt';
+  const cap = document.createElement('caption');
+  cap.textContent = caption;
+  t.appendChild(cap);
+  const th = document.createElement('thead');
+  const trh = document.createElement('tr');
+  head.forEach((h, i) => {
+    const e = document.createElement('th');
+    e.textContent = h; if (i > 0) e.className = 'n';
+    trh.appendChild(e);
+  });
+  th.appendChild(trh); t.appendChild(th);
+  const tb = document.createElement('tbody');
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    r.forEach((c, i) => {
+      const td = document.createElement('td');
+      td.textContent = c; if (i > 0) td.className = 'n';
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+  host.innerHTML = '';
+  host.appendChild(t);
+}
+
+/* ================= 01a  dumbbell ================= */
+function drawDumbbell(box, W) {
+  const enters = DATA.s1.entrants;
+  const exits = DATA.s1.exits;
+  const rows = [
+    ...enters.map(d => ({ c: d.country, a: d.renew_first, b: d.renew_last, up: true, kind: d.kind })),
+    ...exits.map(d => ({ c: d.country, a: d.renew_first, b: d.renew_last, up: false }))
+  ];
+  const narrow = W < 560;
+  const P = { l: narrow ? 96 : 122, r: narrow ? 44 : 58, t: 18, b: 46 };
+  const rowH = 21, gap = 30;
+  const H = P.t + rows.length * rowH + gap + P.b;
+  const iw = W - P.l - P.r;
+  const x = v => P.l + (v / 100) * iw;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Dumbbell chart of renewable electricity share in 2000 and the latest year' });
+  const tp = tipFor(box);
+
+  // grid + ticks
+  [0, 25, 50, 75, 100].forEach(v => {
+    svg.appendChild(S('line', { x1: x(v), x2: x(v), y1: P.t - 6, y2: H - P.b + 8, class: v === 50 ? 'g-axis' : 'g-grid' }));
+    svg.appendChild(T(x(v), H - P.b + 26, v + '%', 'tick', { 'text-anchor': 'middle' }));
+  });
+  svg.appendChild(T(x(50), P.t - 10, '50% — majority renewable', 'axlab', { 'text-anchor': 'middle' }));
+
+  let y = P.t;
+  rows.forEach((r, i) => {
+    if (i === enters.length) y += gap;
+    const cy = y + rowH / 2;
+    r.cy = cy;
+    const col = r.up ? 'var(--pos)' : 'var(--neg)';
+
+    const lab = narrow && r.c.length > 15 ? r.c.slice(0, 14) + '…' : r.c;
+    svg.appendChild(T(0, cy + 4, lab, 'rowlab', { style: narrow ? 'font-size:11px' : '' }));
+
+    svg.appendChild(S('line', {
+      x1: x(r.a), x2: x(r.b), y1: cy, y2: cy,
+      style: `stroke:${col}`, 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .55
+    }));
+    svg.appendChild(S('circle', {
+      cx: x(r.a), cy, r: 3.4, fill: 'none',
+      style: 'stroke:var(--ink-3)', 'stroke-width': 1.4
+    }));
+    svg.appendChild(S('circle', {
+      cx: x(r.b), cy, r: 4.6, style: `fill:${col};stroke:var(--surface)`, 'stroke-width': 2
+    }));
+
+    const hit = S('rect', { x: 0, y: y, width: W, height: rowH, fill: 'transparent', style: 'cursor:default' });
+    const html = `<b>${r.c}</b><br><span class="tk">2000</span> ${fmt(r.a)}% <span class="tk">→</span> <b>${fmt(r.b)}%</b><br><span class="tk">${(r.b - r.a > 0 ? '+' : '')}${fmt(r.b - r.a)} pts</span>`;
+    hit.addEventListener('pointermove', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top, html);
+    });
+    hit.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(hit);
+    y += rowH;
+  });
+
+  // two annotations, kept sparing
+  const big = rows.find(r => r.c === 'Congo');
+  const rise = rows.find(r => r.c === 'Sierra Leone');
+  if (big && !narrow) {
+    svg.appendChild(T(x(big.b) + 9, big.cy + 4, '−79 pts', 'dlabel', { style: 'fill:var(--ink-3);font-size:10.5px' }));
+  }
+  if (rise && !narrow) {
+    svg.appendChild(T(x(rise.b) - 9, rise.cy - 7, '+84 pts', 'dlabel', { 'text-anchor': 'end', style: 'font-size:10.5px' }));
+  }
+
+  box.appendChild(svg);
+}
+
+/* ================= 01b  stacked columns ================= */
+function drawStacked(box, W) {
+  const es = DATA.s1.entrants.map(d => ({ y: d.cross_year, k: d.kind }));
+  const bucket = y => y < 2010 ? '2000s' : (y < 2020 ? '2010s' : '2020s');
+  const decs = ['2000s', '2010s', '2020s'];
+  const keys = ['hydro', 'mixed', 'wind & solar'];
+  const labelOf = { hydro: 'Hydro', mixed: 'Mixed', 'wind & solar': 'Wind & solar' };
+  const colors = { hydro: 'var(--s1)', mixed: 'var(--s2)', 'wind & solar': 'var(--s3)' };
+  const data = decs.map(d => {
+    const set = es.filter(e => bucket(e.y) === d);
+    const o = { d, total: set.length };
+    keys.forEach(k => o[k] = set.filter(e => e.k === k).length);
+    return o;
+  });
+
+  const P = { l: 76, r: 76, t: 26, b: 40 };
+  const rowH = 60, bh = 24;
+  const H = P.t + data.length * rowH + P.b;
+  const iw = W - P.l - P.r;
+  const maxX = 8;
+  const x = v => P.l + (v / maxX) * iw;
+  const narrow2 = W < 560;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Stacked bar chart of entrants by decade and tipping technology' });
+  const tp = tipFor(box);
+
+  for (let v = 0; v <= maxX; v += 2) {
+    svg.appendChild(S('line', { x1: x(v), x2: x(v), y1: P.t - 6, y2: H - P.b + 4, class: v === 0 ? 'g-axis' : 'g-grid' }));
+    svg.appendChild(T(x(v), H - P.b + 22, v, 'tick', { 'text-anchor': 'middle' }));
+  }
+  svg.appendChild(T(x(0), P.t - 10, 'grids joining', 'axlab', { 'text-anchor': 'start' }));
+
+  data.forEach((d, i) => {
+    const cy = P.t + i * rowH + rowH / 2;
+    const label = i === 2 ? '2020–24' : d.d;
+    svg.appendChild(T(0, cy + 4, label, 'rowlab', { style: narrow2 ? 'font-size:11px' : '' }));
+
+    let acc = 0;
+    keys.forEach(k => {
+      const v = d[k];
+      if (!v) return;
+      const x0 = x(acc), x1 = x(acc + v);
+      const w = Math.max(0, x1 - x0 - 2);          // 2px surface gap between segments
+      svg.appendChild(S('rect', { x: x0, y: cy - bh / 2, width: w, height: bh, rx: 2, style: `fill:${colors[k]}` }));
+      if (w >= 22) {
+        svg.appendChild(T(x0 + w / 2, cy + 4, v, 'dlabel', { 'text-anchor': 'middle', style: 'fill:#fff' }));
+      }
+      acc += v;
+    });
+    svg.appendChild(T(x(d.total) + 10, cy + 4, d.total, 'dlabel'));
+
+    const html = `<b>${label}</b> · ${d.total} joined<br>` +
+      keys.map(k => `<span class="tk">${labelOf[k]}</span> ${d[k]}`).join('<br>');
+    const hit = S('rect', { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: 'transparent' });
+    hit.addEventListener('pointermove', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top, html);
+    });
+    hit.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(hit);
+  });
+
+  box.appendChild(svg);
+  legend('c2-legend', keys.map(k => ({ label: labelOf[k], color: colors[k] })));
+}
+
+/* ================= 02a  indexed lines ================= */
+function drawLines(box, W) {
+  const idx = DATA.s2.indexed;
+  const series = [
+    { name: 'Food away from home', key: 'Food away from home', color: 'var(--s2)' },
+    { name: 'Average hourly earnings', key: 'Average hourly earnings', color: 'var(--s3)' },
+    { name: 'Food at home', key: 'Food at home', color: 'var(--s1)' }
+  ].map(s => ({ ...s, pts: idx[s.key] }));
+
+  const n = series[0].pts.length;
+  const all = series.flatMap(s => s.pts.map(p => p.v));
+  const lo = Math.floor(Math.min(...all) / 5) * 5 - 2;
+  const hi = Math.ceil(Math.max(...all) / 5) * 5 + 2;
+
+  const narrow = W < 560;
+  const P = { l: 40, r: narrow ? 12 : 108, t: 22, b: 40 };
+  const H = narrow ? 300 : 340;
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+  const x = i => P.l + (i / (n - 1)) * iw;
+  const y = v => P.t + ih - ((v - lo) / (hi - lo)) * ih;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Indexed line chart' });
+  const tp = tipFor(box);
+
+  for (let v = lo; v <= hi; v += 10) {
+    svg.appendChild(S('line', { x1: P.l, x2: W - P.r, y1: y(v), y2: y(v), class: v === 100 ? 'g-axis' : 'g-grid' }));
+    svg.appendChild(T(P.l - 9, y(v) + 4, v, 'tick', { 'text-anchor': 'end' }));
+  }
+  svg.appendChild(T(P.l - 9, P.t - 9, 'index', 'axlab', { 'text-anchor': 'end' }));
+
+  // x ticks at Jan of each year
+  series[0].pts.forEach((p, i) => {
+    if (p.d.endsWith('-01') || i === 0) {
+      svg.appendChild(T(x(i), H - P.b + 22, p.d.slice(0, 4), 'tick', { 'text-anchor': 'middle' }));
+    }
+  });
+
+  const ends = [];
+  series.forEach(s => {
+    let d = '';
+    s.pts.forEach((p, i) => { d += (i ? 'L' : 'M') + x(i) + ' ' + y(p.v); });
+    svg.appendChild(S('path', { d, fill: 'none', style: `stroke:${s.color}`, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    const last = s.pts[s.pts.length - 1];
+    svg.appendChild(S('circle', { cx: x(n - 1), cy: y(last.v), r: 4.2, style: `fill:${s.color};stroke:var(--surface)`, 'stroke-width': 2 }));
+    ends.push({ y: y(last.v), text: fmt(last.v, 1) });
+  });
+
+  if (!narrow) {
+    // the three endpoints sit within a few points of each other: keep the labels
+    // apart and draw a leader back to the dot wherever one had to move
+    ends.sort((a, b) => a.y - b.y);
+    let prev = -1e9;
+    ends.forEach(e => { e.ly = Math.max(e.y, prev + 16); prev = e.ly; });
+    const overflow = ends[ends.length - 1].ly - (P.t + ih) + 2;
+    if (overflow > 0) ends.forEach(e => { e.ly -= overflow; });
+    ends.forEach(e => {
+      svg.appendChild(S('line', {
+        x1: x(n - 1) + 5, y1: e.y, x2: x(n - 1) + 11, y2: e.ly,
+        style: 'stroke:var(--rule-strong)', 'stroke-width': 1
+      }));
+      svg.appendChild(T(x(n - 1) + 15, e.ly + 4, e.text, 'dlabel'));
+    });
+  }
+
+  // crosshair + tooltip
+  const cross = S('line', { y1: P.t, y2: P.t + ih, class: 'g-ref', style: 'stroke:var(--rule-strong)', opacity: 0 });
+  svg.appendChild(cross);
+  const dots = series.map(s => {
+    const c = S('circle', { r: 3.6, opacity: 0, style: `fill:${s.color};stroke:var(--surface)`, 'stroke-width': 2 });
+    svg.appendChild(c); return c;
+  });
+  const over = S('rect', { x: P.l, y: P.t, width: iw, height: ih, fill: 'transparent' });
+  over.addEventListener('pointermove', ev => {
+    const bb = box.getBoundingClientRect();
+    const px = ev.clientX - bb.left;
+    const i = Math.max(0, Math.min(n - 1, Math.round((px - P.l) / iw * (n - 1))));
+    cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.setAttribute('opacity', 1);
+    series.forEach((s, k) => {
+      dots[k].setAttribute('cx', x(i)); dots[k].setAttribute('cy', y(s.pts[i].v)); dots[k].setAttribute('opacity', 1);
+    });
+    tp.show(px, y(series[0].pts[i].v),
+      `<b>${series[0].pts[i].d}</b><br>` +
+      series.map(s => `<span class="tk">${s.name}</span> <b>${fmt(s.pts[i].v, 1)}</b>`).join('<br>'));
+  });
+  over.addEventListener('pointerleave', () => {
+    cross.setAttribute('opacity', 0);
+    dots.forEach(d => d.setAttribute('opacity', 0));
+    tp.hide();
+  });
+  svg.appendChild(over);
+
+  box.appendChild(svg);
+  legend('c3-legend', series.map(s => ({ label: s.name, color: s.color, shape: 'line' })));
+}
+
+/* ================= 02b  ranked bars ================= */
+function drawBars(box, W) {
+  const rows = DATA.s2.categories.filter(c => c.series !== 'CPIAUCSL')
+    .slice().sort((a, b) => b.chg_pct - a.chg_pct);
+  const wage = DATA.s2.wage_growth_pct;
+  const narrow = W < 560;
+  const P = { l: narrow ? 128 : 176, r: 54, t: 30, b: 34 };
+  const rowH = 30;
+  const H = P.t + rows.length * rowH + P.b;
+  const iw = W - P.l - P.r;
+  const maxV = 46;
+  const x = v => P.l + (v / maxV) * iw;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Ranked bar chart of grocery category price change' });
+  const tp = tipFor(box);
+
+  for (let v = 0; v <= 40; v += 10) {
+    svg.appendChild(S('line', { x1: x(v), x2: x(v), y1: P.t - 6, y2: H - P.b + 2, class: 'g-grid' }));
+    svg.appendChild(T(x(v), H - P.b + 21, v + '%', 'tick', { 'text-anchor': 'middle' }));
+  }
+
+  rows.forEach((r, i) => {
+    const cy = P.t + i * rowH + rowH / 2;
+    const bh = 18;
+    const lab = narrow && r.label.length > 17 ? r.label.slice(0, 16) + '…' : r.label;
+    svg.appendChild(T(0, cy + 4, lab, 'rowlab', { style: narrow ? 'font-size:11px' : '' }));
+
+    // bar with 4px rounded data-end, square at the baseline
+    const w = Math.max(2, x(r.chg_pct) - P.l);
+    const rr = 4;
+    const d = `M${P.l} ${cy - bh / 2} h${Math.max(0, w - rr)} a${rr} ${rr} 0 0 1 ${rr} ${rr} v${bh - rr * 2} a${rr} ${rr} 0 0 1 ${-rr} ${rr} h${-Math.max(0, w - rr)} z`;
+    svg.appendChild(S('path', { d, style: 'fill:var(--s1)' }));
+    svg.appendChild(T(P.l + w + 8, cy + 4, fmt(r.chg_pct, 1) + '%', 'dlabel'));
+
+    const diff = r.chg_pct - wage;
+    const html = `<b>${r.label}</b><br><span class="tk">price change</span> <b>+${fmt(r.chg_pct, 1)}%</b><br>` +
+      `<span class="tk">vs wages</span> ${diff >= 0 ? '+' : ''}${fmt(diff, 1)} pts`;
+    const hit = S('rect', { x: 0, y: cy - rowH / 2, width: W, height: rowH, fill: 'transparent' });
+    hit.addEventListener('pointermove', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top, html);
+    });
+    hit.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(hit);
+  });
+
+  // wage reference
+  svg.appendChild(S('line', { x1: x(wage), x2: x(wage), y1: P.t - 12, y2: H - P.b + 2, class: 'g-ref', style: 'stroke:var(--ink-2)' }));
+  svg.appendChild(T(x(wage) + 6, P.t - 16, 'wages +' + fmt(wage, 1) + '%', 'annot-b'));
+
+  box.appendChild(svg);
+}
+
+/* ================= 03a  log-log scatter ================= */
+function drawScatter(box, W) {
+  const pts = DATA.s3.series;
+  const fit = DATA.s3.fit;
+  const narrow = W < 560;
+  const P = { l: 54, r: 24, t: 30, b: 50 };
+  const H = narrow ? 330 : 380;
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+
+  const lx = v => Math.log10(v);
+  const xs = pts.map(p => lx(p.gw)), ys = pts.map(p => lx(p.usd_per_w));
+  const x0 = Math.floor(Math.min(...xs) * 10) / 10, x1 = Math.ceil(Math.max(...xs) * 10) / 10;
+  const y0 = Math.floor(Math.min(...ys) * 10) / 10, y1 = Math.ceil(Math.max(...ys) * 10) / 10;
+  const X = v => P.l + ((lx(v) - x0) / (x1 - x0)) * iw;
+  const Y = v => P.t + ih - ((lx(v) - y0) / (y1 - y0)) * ih;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Log-log scatter plot of solar module price against cumulative capacity' });
+  const tp = tipFor(box);
+
+  const xt = [1, 10, 100, 1000];
+  xt.forEach(v => {
+    if (lx(v) < x0 || lx(v) > x1) return;
+    svg.appendChild(S('line', { x1: X(v), x2: X(v), y1: P.t, y2: P.t + ih, class: 'g-grid' }));
+    svg.appendChild(T(X(v), P.t + ih + 21, v >= 1000 ? '1,000' : v, 'tick', { 'text-anchor': 'middle' }));
+  });
+  const yt = [0.3, 1, 3, 10];
+  yt.forEach(v => {
+    if (lx(v) < y0 || lx(v) > y1) return;
+    svg.appendChild(S('line', { x1: P.l, x2: W - P.r, y1: Y(v), y2: Y(v), class: 'g-grid' }));
+    svg.appendChild(T(P.l - 9, Y(v) + 4, '$' + (v < 1 ? v.toFixed(1) : v), 'tick', { 'text-anchor': 'end' }));
+  });
+  svg.appendChild(T(P.l + iw / 2, H - 8, 'cumulative installed capacity, GW (log)', 'axlab', { 'text-anchor': 'middle' }));
+  svg.appendChild(T(P.l - 9, P.t - 10, '$/W', 'axlab', { 'text-anchor': 'end' }));
+
+  // 2008-11 excursion band
+  const b0 = 2008, b1 = 2011;
+  const gx = y => { const p = pts.find(q => q.Year === y); return p ? X(p.gw) : null; };
+  const bx0 = gx(b0), bx1 = gx(b1);
+  if (bx0 && bx1) {
+    svg.appendChild(S('rect', { x: bx0 - 12, y: P.t, width: bx1 - bx0 + 24, height: ih, style: 'fill:var(--neg)', opacity: .06 }));
+    if (!narrow) {
+      svg.appendChild(T(bx0 - 12, P.t - 10, '2008–11', 'annot-b', { style: 'font-size:10.5px;fill:var(--neg)' }));
+    }
+  }
+
+  // fitted line
+  const a = fit.intercept, b = fit.slope;
+  const xa = Math.min(...pts.map(p => p.gw)), xb = Math.max(...pts.map(p => p.gw));
+  const ya = Math.exp(a + b * Math.log(xa)), yb = Math.exp(a + b * Math.log(xb));
+  svg.appendChild(S('line', {
+    x1: X(xa), y1: Y(ya), x2: X(xb), y2: Y(yb),
+    style: 'stroke:var(--ink-2)', 'stroke-width': 2, 'stroke-linecap': 'round', opacity: .85
+  }));
+
+  pts.forEach(p => {
+    const c = S('circle', { cx: X(p.gw), cy: Y(p.usd_per_w), r: 4.4, style: 'fill:var(--s1);stroke:var(--surface)', 'stroke-width': 2 });
+    c.addEventListener('pointerenter', ev => {
+      const bb = box.getBoundingClientRect();
+      tp.show(ev.clientX - bb.left, ev.clientY - bb.top,
+        `<b>${p.Year}</b><br><span class="tk">price</span> $${fmt(p.usd_per_w, 3)}/W<br><span class="tk">capacity</span> ${Math.round(p.gw).toLocaleString()} GW`);
+    });
+    c.addEventListener('pointerleave', () => tp.hide());
+    svg.appendChild(c);
+  });
+
+  const last = pts[pts.length - 1];
+  if (!narrow) {
+    svg.appendChild(T(X(last.gw) - 10, Y(last.usd_per_w) + 22, `${last.Year}: $${fmt(last.usd_per_w, 2)}/W`, 'dlabel', { 'text-anchor': 'end' }));
+  }
+
+  box.appendChild(svg);
+}
+
+/* ================= 03b  LCOE emphasis ================= */
+function drawLcoe(box, W) {
+  const src = DATA.s3.lcoe_series;
+  const names = ['Solar photovoltaic', 'Onshore wind', 'Offshore wind', 'Hydropower', 'Concentrated solar power'];
+  const short = { 'Solar photovoltaic': 'Solar PV', 'Onshore wind': 'Onshore wind', 'Offshore wind': 'Offshore wind', 'Hydropower': 'Hydropower', 'Concentrated solar power': 'CSP' };
+  const narrow = W < 560;
+  const P = { l: 52, r: narrow ? 86 : 104, t: 26, b: 40 };
+  const H = narrow ? 320 : 350;
+  const iw = W - P.l - P.r, ih = H - P.t - P.b;
+
+  const all = names.flatMap(n => src[n].map(p => p.v));
+  const y0 = Math.log10(0.02), y1 = Math.log10(0.5);
+  const X = yr => P.l + ((yr - 2010) / 15) * iw;
+  const Y = v => P.t + ih - ((Math.log10(v) - y0) / (y1 - y0)) * ih;
+
+  const svg = S('svg', { viewBox: `0 0 ${W} ${H}`, width: '100%', height: H, role: 'img', 'aria-label': 'Levelised cost of electricity by technology' });
+
+  [0.02, 0.05, 0.1, 0.25, 0.5].forEach(v => {
+    svg.appendChild(S('line', { x1: P.l, x2: W - P.r, y1: Y(v), y2: Y(v), class: 'g-grid' }));
+    svg.appendChild(T(P.l - 9, Y(v) + 4, '$' + v.toFixed(2), 'tick', { 'text-anchor': 'end' }));
+  });
+  [2010, 2015, 2020, 2025].forEach(yr => {
+    svg.appendChild(T(X(yr), H - P.b + 21, yr, 'tick', { 'text-anchor': 'middle' }));
+  });
+  svg.appendChild(T(P.l - 9, P.t - 9, '$/kWh', 'axlab', { 'text-anchor': 'end' }));
+
+  names.forEach(n => {
+    const isSolar = n === 'Solar photovoltaic';
+    const col = isSolar ? 'var(--s1)' : 'var(--mute-mark)';
+    let d = '';
+    src[n].forEach((p, i) => { d += (i ? 'L' : 'M') + X(p.year) + ' ' + Y(p.v); });
+    svg.appendChild(S('path', {
+      d, fill: 'none', style: `stroke:${col}`, 'stroke-width': isSolar ? 2.4 : 1.4,
+      'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: isSolar ? 1 : .85
+    }));
+    const last = src[n][src[n].length - 1];
+    if (isSolar) {
+      svg.appendChild(S('circle', { cx: X(last.year), cy: Y(last.v), r: 4.2, style: 'fill:var(--s1);stroke:var(--surface)', 'stroke-width': 2 }));
+    }
+    svg.appendChild(T(X(last.year) + 8, Y(last.v) + 4, short[n], isSolar ? 'dlabel' : 'annot', {
+      style: isSolar ? 'font-size:11px' : 'font-size:10.5px;fill:var(--ink-3)'
+    }));
+  });
+
+  box.appendChild(svg);
+  legend('c6-legend', [
+    { label: 'Solar PV', color: 'var(--s1)', shape: 'line' },
+    { label: 'Other technologies (4)', color: 'var(--mute-mark)', shape: 'line' }
+  ]);
+}
+
+function boot() {
+  mount('c1', drawDumbbell);
+  mount('c2', drawStacked);
+  mount('c3', drawLines);
+  mount('c4', drawBars);
+  mount('c5', drawScatter);
+  mount('c6', drawLcoe);
+
+  // legends for the two charts drawn without one
+  legend('c1-legend', [
+    { label: 'Joined the 50% club (16)', color: 'var(--pos)', shape: 'dot' },
+    { label: 'Left it (10)', color: 'var(--neg)', shape: 'dot' }
+  ]);
+
+  // tables
+  const ent = DATA.s1.entrants, ex = DATA.s1.exits;
+  buildTable('c1-table', 'Renewable share of electricity, 2000 vs latest year',
+    ['Country', 'Group', '2000', 'Latest', 'Change (pts)'],
+    [...ent.map(d => [d.country, 'Joined', fmt(d.renew_first), fmt(d.renew_last), '+' + fmt(d.renew_last - d.renew_first)]),
+     ...ex.map(d => [d.country, 'Left', fmt(d.renew_first), fmt(d.renew_last), fmt(d.renew_last - d.renew_first)])]);
+
+  const bucket = y => y < 2010 ? '2000s' : (y < 2020 ? '2010s' : '2020–24');
+  const dec = ['2000s', '2010s', '2020–24'];
+  const kk = ['hydro', 'mixed', 'wind & solar'];
+  buildTable('c2-table', 'Entrants by decade and tipping technology',
+    ['Decade', 'Hydro', 'Mixed', 'Wind & solar', 'Total'],
+    dec.map(d => {
+      const set = ent.filter(e => bucket(e.cross_year) === d);
+      return [d, ...kk.map(k => set.filter(e => e.kind === k).length), set.length];
+    }));
+
+  buildTable('c3-table', 'Indexed price and wage series, selected months',
+    ['Month', 'Food at home', 'Food away', 'Hourly earnings'],
+    DATA.s2.indexed['Food at home'].filter((_, i, a) => i % 12 === 0 || i === a.length - 1).map((p, i, arr) => {
+      const j = DATA.s2.indexed['Food at home'].indexOf(p);
+      return [p.d,
+        fmt(DATA.s2.indexed['Food at home'][j].v),
+        fmt(DATA.s2.indexed['Food away from home'][j].v),
+        fmt(DATA.s2.indexed['Average hourly earnings'][j].v)];
+    }));
+
+  buildTable('c4-table', 'Cumulative price change by category, Jan 2020 – Sep 2026',
+    ['Category', 'Change'],
+    DATA.s2.categories.filter(c => c.series !== 'CPIAUCSL')
+      .sort((a, b) => b.chg_pct - a.chg_pct)
+      .map(c => [c.label, '+' + fmt(c.chg_pct) + '%'])
+      .concat([['Average hourly earnings', '+' + fmt(DATA.s2.wage_growth_pct) + '%']]));
+
+  buildTable('c5-table', 'Solar module price and cumulative capacity',
+    ['Year', 'Capacity (GW)', 'Price ($/W)', 'Fitted ($/W)'],
+    DATA.s3.series.map(p => [p.Year, Math.round(p.gw).toLocaleString(), fmt(p.usd_per_w, 3), fmt(p.fit, 3)]));
+
+  buildTable('c6-table', 'Levelised cost of electricity, USD/kWh',
+    ['Year', 'Solar PV', 'Onshore wind', 'Offshore wind', 'Hydropower', 'CSP'],
+    DATA.s3.lcoe_series['Solar photovoltaic'].map(p => {
+      const yr = p.year;
+      const get = n => { const f = DATA.s3.lcoe_series[n].find(q => q.year === yr); return f ? fmt(f.v, 3) : '—'; };
+      return [yr, fmt(p.v, 3), get('Onshore wind'), get('Offshore wind'), get('Hydropower'), get('Concentrated solar power')];
+    }));
+
+  document.querySelectorAll('.tbl-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.target;
+      const tbl = document.getElementById(id + '-table');
+      const body = document.getElementById(id);
+      const showTable = tbl.hidden;
+      tbl.hidden = !showTable;
+      body.hidden = showTable;
+      btn.textContent = showTable ? 'Chart' : 'Table';
+      btn.setAttribute('aria-expanded', String(showTable));
+    });
+  });
+}
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+else boot();
+</script>

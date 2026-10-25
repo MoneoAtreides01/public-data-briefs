@@ -1,0 +1,12 @@
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# built twice: site/index.html is the local copy, ./index.html is what Pages serves
+site/index.html
+
+# not published: contains pricing and outreach notes
+site/listing-copy.html
+site/gigs/
+NOTES.md
