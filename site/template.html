@@ -642,11 +642,14 @@ function drawDumbbell(box, W) {
   // two annotations, kept sparing
   const big = rows.find(r => r.c === 'Congo');
   const rise = rows.find(r => r.c === 'Sierra Leone');
+  const ptsLabel = r => (r.b - r.a >= 0 ? '+' : '−') + fmt(Math.abs(r.b - r.a), 0) + ' pts';
   if (big && !narrow) {
-    svg.appendChild(T(x(big.b) + 9, big.cy + 4, '−79 pts', 'dlabel', { style: 'fill:var(--ink-3);font-size:10.5px' }));
+    svg.appendChild(T(x(big.b) - 9, big.cy - 7, ptsLabel(big), 'dlabel',
+      { 'text-anchor': 'end', style: 'fill:var(--ink-3);font-size:10.5px' }));
   }
   if (rise && !narrow) {
-    svg.appendChild(T(x(rise.b) - 9, rise.cy - 7, '+84 pts', 'dlabel', { 'text-anchor': 'end', style: 'font-size:10.5px' }));
+    svg.appendChild(T(x(rise.b) - 9, rise.cy - 7, ptsLabel(rise), 'dlabel',
+      { 'text-anchor': 'end', style: 'font-size:10.5px' }));
   }
 
   box.appendChild(svg);
