@@ -3,6 +3,9 @@
 __pycache__/
 *.pyc
 
+# portable gh CLI
+.tools/
+
 # built twice: site/index.html is the local copy, ./index.html is what Pages serves
 site/index.html
 
